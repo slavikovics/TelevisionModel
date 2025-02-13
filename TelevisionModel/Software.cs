@@ -8,5 +8,14 @@ namespace TelevisionModel
 {
     public class Software
     {
+        public string InstalledVersion { get; set; }
+        
+        public string NewestVersion { get; set; }
+
+        public Software(string installedVersion, string newestVersion)
+        {
+            InstalledVersion = installedVersion;
+            NewestVersion = newestVersion;
+        }
     }
 }

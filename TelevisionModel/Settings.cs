@@ -8,5 +8,14 @@ namespace TelevisionModel
 {
     public class Settings
     {
+        public string Language { get; set; }
+        
+        public string Password { get; set; }
+
+        public Settings(string language, string password)
+        {
+            Language = language;
+            Password = password;
+        }
     }
 }
