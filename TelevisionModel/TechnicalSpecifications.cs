@@ -8,5 +8,6 @@ namespace TelevisionModel
 {
     public class TechnicalSpecifications
     {
+        
     }
 }

@@ -8,5 +8,14 @@ namespace TelevisionModel
 {
     public class Television
     {
+        private TelevisionChanel CurrentTelevisionChanel { get; set; }
+        
+        public SoundSystem SoundSystem { get; set; }
+
+        public Screen Screen { get; set; }
+
+        public Television()
+        {
+        }
     }
 }

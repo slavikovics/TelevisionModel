@@ -8,15 +8,25 @@ namespace TelevisionModel
 {
     public class SoundSystem
     {
-        public double MinFrequency { get; set; }
-        public double MaxFrequency { get; set; }
-        public double Volume { get; set; }
+        public double Volume { get; private set; }
 
-        public SoundSystem(double minFrequency, double maxFrequency, double volume)
+        public bool IsMuted { get; private set; }
+
+        public SoundSystem()
         {
-            MinFrequency = minFrequency;
-            MaxFrequency = maxFrequency;
-            Volume = volume;
+            Volume = 0;
+            IsMuted = true;
+        }
+
+        public void EditVolume(double newVolume)
+        {
+            if (newVolume is < 0 or > 100)
+            {
+                throw new ArgumentException("Volume must be between 0 and 100.");
+            }
+
+            IsMuted = !(newVolume > 0);
+            Volume = newVolume;
         }
     }
 }

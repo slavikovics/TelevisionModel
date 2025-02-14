@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace TelevisionModel
 {
-    public class TVChanel
+    public class TelevisionChanel
     {
+        public int Id { get; }
+        
+        public string Name { get; }
+
+        public TelevisionChanel(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }
