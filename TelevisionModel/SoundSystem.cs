@@ -11,6 +11,8 @@ namespace TelevisionModel
         public double Volume { get; private set; }
 
         public bool IsMuted { get; private set; }
+        
+        public bool IsTurnedOn { get; private set; }
 
         public SoundSystem()
         {
@@ -27,6 +29,26 @@ namespace TelevisionModel
 
             IsMuted = !(newVolume > 0);
             Volume = newVolume;
+        }
+
+        public void TurnOn()
+        {
+            if (IsTurnedOn)
+            {
+                throw new InvalidOperationException("The sound system is already turned on");
+            }
+            
+            IsTurnedOn = true;
+        }
+
+        public void TurnOff()
+        {
+            if (!IsTurnedOn)
+            {
+                throw new InvalidOperationException("The sound system is not turned on");
+            }
+            
+            IsTurnedOn = false;
         }
     }
 }

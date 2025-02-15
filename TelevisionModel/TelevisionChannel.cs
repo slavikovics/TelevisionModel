@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TelevisionModel
 {
-    public class TelevisionChanel
+    public class TelevisionChannel
     {
         public int Id { get; }
         
         public string Name { get; }
 
-        public TelevisionChanel(int id, string name)
+        public TelevisionChannel(int id, string name)
         {
             Id = id;
             Name = name;

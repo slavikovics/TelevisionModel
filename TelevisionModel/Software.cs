@@ -9,13 +9,16 @@ namespace TelevisionModel
     public class Software
     {
         public string InstalledVersion { get; set; }
-        
-        public string NewestVersion { get; set; }
 
-        public Software(string installedVersion, string newestVersion)
+        public Software(string installedVersion)
         {
             InstalledVersion = installedVersion;
-            NewestVersion = newestVersion;
+        }
+
+        public void UpdateSoftware(string newVersion)
+        {
+            if (InstalledVersion == newVersion) throw new Exception("The latest version of software is already installed.");
+            InstalledVersion = newVersion;
         }
     }
 }

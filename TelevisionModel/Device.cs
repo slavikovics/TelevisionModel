@@ -8,9 +8,9 @@ namespace TelevisionModel
 {
     public class Device
     {
-        public string Name { get; set; }
+        public string Name { get; }
 
-        public string Function { get; set; }
+        public string Function { get; }
 
         public Device(string name, string function)
         {
