@@ -12,9 +12,9 @@ namespace TelevisionModel
         
         public int ResolutionY { get; private set; }
         
-        private int MaxResolutionX { get; }
+        public int MaxResolutionX { get; }
         
-        private int MaxResolutionY { get; }
+        public int MaxResolutionY { get; }
         
         public string MatrixType { get; }
         

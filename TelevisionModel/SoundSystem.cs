@@ -9,15 +9,20 @@ namespace TelevisionModel
     public class SoundSystem
     {
         public double Volume { get; private set; }
+        
+        public double Power { get; }
 
         public bool IsMuted { get; private set; }
         
-        public bool IsTurnedOn { get; private set; }
+        private bool IsTurnedOn { get; set; }
 
-        public SoundSystem()
+        public SoundSystem(double power)
         {
+            if (power <= 0) throw new ArgumentException("Invalid power value");
+            
             Volume = 0;
             IsMuted = true;
+            Power = power;
         }
 
         public void EditVolume(double newVolume)

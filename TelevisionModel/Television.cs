@@ -8,22 +8,28 @@ namespace TelevisionModel
 {
     public class Television
     {
-        private TelevisionChannel CurrentTelevisionChannel { get; set; }
-        
-        public SoundSystem SoundSystem { get; set; }
+        private SoundSystem SoundSystem { get; }
 
-        public Screen Screen { get; set; }
+        private Screen Screen { get; }
         
         private bool IsTurnedOn { get; set; }
         
-        List<Device> ConnectedDevices { get; set; }
+        private List<Device> ConnectedDevices { get; set; }
         
-        List<TelevisionChannel> AvailableChannels { get; set; }
+        private List<TelevisionChannel> AvailableChannels { get; set; }
+        
+        private int SelectedChannel { get; set; }
+        
+        public TechnicalSpecifications TechnicalSpecifications { get; private set; }
 
-        public Television()
+        public Television(SoundSystem soundSystem, Screen screen)
         {
             ConnectedDevices = new List<Device>();
+            AvailableChannels = new List<TelevisionChannel>();
             IsTurnedOn = false;
+            SelectedChannel = 0;
+            SoundSystem = soundSystem;
+            Screen = screen;
         }
 
         private void TurnOn()
@@ -54,6 +60,41 @@ namespace TelevisionModel
         {
             if (IsTurnedOn) TurnOff();
             else TurnOn();
+        }
+
+        private void SelectNextChannel()
+        {
+            if (!IsTurnedOn) throw new InvalidOperationException("The television is not turned on");
+
+            SelectedChannel++;
+            if (SelectedChannel >= AvailableChannels.Count) SelectedChannel = 0;
+        }
+
+        private void SelectPreviousChannel()
+        {
+            if (!IsTurnedOn) throw new InvalidOperationException("The television is not turned on");
+
+            SelectedChannel--;
+            if (SelectedChannel < 0) SelectedChannel = AvailableChannels.Count - 1;
+        }
+
+        public void AddTelevisionChannel(bool isPaidBySubscription, string channelName)
+        {
+            foreach (TelevisionChannel channel in AvailableChannels)
+            {
+                if (channel.Name == channelName) throw new ArgumentException("The television channel with the same name already exists");
+            }
+            
+            TelevisionChannel televisionChannel = new TelevisionChannel(isPaidBySubscription, channelName);
+            AvailableChannels.Add(televisionChannel);
+        }
+
+        public void RemoveTelevisionChannel(string channelName)
+        {
+            TelevisionChannel? channelToRemove = AvailableChannels.Find(channel => channel.Name == channelName);
+            if (channelToRemove is null) throw new ArgumentException("The television channel with this name does not exist");
+
+            AvailableChannels.Remove(channelToRemove);
         }
     }
 }

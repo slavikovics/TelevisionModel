@@ -8,13 +8,13 @@ namespace TelevisionModel
 {
     public class TelevisionChannel
     {
-        public int Id { get; }
+        public bool IsPaidBuySubscription { get; }
         
         public string Name { get; }
 
-        public TelevisionChannel(int id, string name)
+        public TelevisionChannel(bool isPaidBuySubscription, string name)
         {
-            Id = id;
+            IsPaidBuySubscription = isPaidBuySubscription;
             Name = name;
         }
     }
