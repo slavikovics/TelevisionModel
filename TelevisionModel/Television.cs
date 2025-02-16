@@ -78,14 +78,14 @@ namespace TelevisionModel
             if (SelectedChannel < 0) SelectedChannel = AvailableChannels.Count - 1;
         }
 
-        public void AddTelevisionChannel(bool isPaidBySubscription, string channelName)
+        public void AddTelevisionChannel(string logoPath, string channelName)
         {
             foreach (TelevisionChannel channel in AvailableChannels)
             {
                 if (channel.Name == channelName) throw new ArgumentException("The television channel with the same name already exists");
             }
             
-            TelevisionChannel televisionChannel = new TelevisionChannel(isPaidBySubscription, channelName);
+            TelevisionChannel televisionChannel = new TelevisionChannel(logoPath, channelName);
             AvailableChannels.Add(televisionChannel);
         }
 

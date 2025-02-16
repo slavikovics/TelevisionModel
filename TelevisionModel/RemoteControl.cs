@@ -25,7 +25,6 @@ namespace TelevisionModel
         {
             _powerSwitchPushed -= PairedTelevision.PowerSwitchPushed;
             PairedTelevision = televisionToPair;
-            
             _powerSwitchPushed += PairedTelevision.PowerSwitchPushed;
         }
 

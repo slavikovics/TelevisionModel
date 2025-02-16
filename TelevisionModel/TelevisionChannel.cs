@@ -8,14 +8,19 @@ namespace TelevisionModel
 {
     public class TelevisionChannel
     {
-        public bool IsPaidBuySubscription { get; }
+        public string LogoPath { get; }
         
         public string Name { get; }
 
-        public TelevisionChannel(bool isPaidBuySubscription, string name)
+        public TelevisionChannel(string logoPath, string name)
         {
-            IsPaidBuySubscription = isPaidBuySubscription;
+            LogoPath = logoPath;
             Name = name;
+        }
+
+        public string BuildLogoUrl()
+        {
+            return "https://jaruba.github.io/channel-logos/export/transparent-color/" + LogoPath;
         }
     }
 }
