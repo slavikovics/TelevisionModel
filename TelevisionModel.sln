@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelevisionModel", "TelevisionModel\TelevisionModel.csproj", "{4ADB29E6-0400-4ACC-8015-31049376120C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelevisionModelTests", "TelevisionModelTests\TelevisionModelTests.csproj", "{6489E3A0-180B-4B40-A6E5-B6959D2695D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4ADB29E6-0400-4ACC-8015-31049376120C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ADB29E6-0400-4ACC-8015-31049376120C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ADB29E6-0400-4ACC-8015-31049376120C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6489E3A0-180B-4B40-A6E5-B6959D2695D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6489E3A0-180B-4B40-A6E5-B6959D2695D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6489E3A0-180B-4B40-A6E5-B6959D2695D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6489E3A0-180B-4B40-A6E5-B6959D2695D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

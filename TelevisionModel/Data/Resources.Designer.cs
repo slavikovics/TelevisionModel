@@ -58,5 +58,14 @@ namespace TelevisionModel.Data {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://jaruba.github.io/channel-logos/export/transparent-color/.
+        /// </summary>
+        internal static string BaseUrl {
+            get {
+                return ResourceManager.GetString("BaseUrl", resourceCulture);
+            }
+        }
     }
 }

@@ -8,9 +8,9 @@ namespace TelevisionModel
 {
     public class Screen
     {
-        public int ResolutionX { get; private set; }
+        private int ResolutionX { get; set; }
         
-        public int ResolutionY { get; private set; }
+        private int ResolutionY { get; set; }
         
         public int MaxResolutionX { get; }
         
@@ -22,7 +22,7 @@ namespace TelevisionModel
         
         public double Width { get; }
         
-        public bool IsTurnedOn { get; private set; }
+        private bool IsTurnedOn { get; set; }
 
         public Screen(int maxResolutionX, int maxResolutionY, string matrixType, double height, double width)
         {

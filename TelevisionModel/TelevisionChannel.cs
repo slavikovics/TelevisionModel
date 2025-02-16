@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TelevisionModel.Data;
 
 namespace TelevisionModel
 {
@@ -20,7 +21,7 @@ namespace TelevisionModel
 
         public string BuildLogoUrl()
         {
-            return "https://jaruba.github.io/channel-logos/export/transparent-color/" + LogoPath;
+            return Resources.BaseUrl + LogoPath;
         }
     }
 }

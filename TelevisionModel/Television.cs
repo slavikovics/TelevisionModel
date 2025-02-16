@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace TelevisionModel
@@ -78,11 +79,13 @@ namespace TelevisionModel
             if (SelectedChannel < 0) SelectedChannel = AvailableChannels.Count - 1;
         }
 
-        public void AddTelevisionChannel(string logoPath, string channelName)
+        private void AddTelevisionChannel(string channelName, string? logoPath)
         {
+            if (logoPath is null) return;
+            
             foreach (TelevisionChannel channel in AvailableChannels)
             {
-                if (channel.Name == channelName) throw new ArgumentException("The television channel with the same name already exists");
+                if (channel.Name == channelName) throw new ArgumentException($"The television channel with the same name already exists. Name: {channelName}.");
             }
             
             TelevisionChannel televisionChannel = new TelevisionChannel(logoPath, channelName);
@@ -95,6 +98,17 @@ namespace TelevisionModel
             if (channelToRemove is null) throw new ArgumentException("The television channel with this name does not exist");
 
             AvailableChannels.Remove(channelToRemove);
+        }
+
+        public void FindChannels()
+        {
+            string text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/logo_paths.json"));
+            JsonDocument jsonDocument = JsonDocument.Parse(text);
+
+            foreach (var property in jsonDocument.RootElement.EnumerateObject())
+            {
+                AddTelevisionChannel(property.Name, property.Value.GetString());
+            }
         }
     }
 }
