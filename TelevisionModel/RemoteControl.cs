@@ -8,29 +8,49 @@ namespace TelevisionModel
 {
     public class RemoteControl: Device
     {
-        public Television PairedTelevision { get; set; }
+        private Television PairedTelevision { get; set; }
 
-        private delegate void PowerSwitchPushed();
+        public delegate void PowerSwitch();
         
-        private PowerSwitchPushed _powerSwitchPushed;
+        public delegate void NextChannel();
+        
+        public delegate void PreviousChannel();
+        
+        private delegate void ChangeVolumePushed();
+        
+        public PowerSwitch PowerSwitchPushed;
+        
+        public NextChannel NextChannelPushed;
+        
+        public PreviousChannel PreviousChannelPushed;
 
         public RemoteControl(Television televisionToPair, string name, string function) : base(name, function)
         {
             if (televisionToPair is null) throw new ArgumentException("Television to Pair is null");
             PairedTelevision = televisionToPair;
-            _powerSwitchPushed += PairedTelevision.PowerSwitchPushed;
+            PairedTelevision.RegisterRemoteControl(this);
         }
 
         public void Pair(Television televisionToPair)
         {
-            _powerSwitchPushed -= PairedTelevision.PowerSwitchPushed;
+            PairedTelevision.UnregisterRemoteControl(this);
             PairedTelevision = televisionToPair;
-            _powerSwitchPushed += PairedTelevision.PowerSwitchPushed;
+            PairedTelevision.RegisterRemoteControl(this);
         }
 
         public void PushPowerSwitch()
         {
-            _powerSwitchPushed?.Invoke();
+            PowerSwitchPushed?.Invoke();
+        }
+
+        public void PushNextChannel()
+        {
+            NextChannelPushed?.Invoke();
+        }
+
+        public void PushPreviousChannel()
+        {
+            PreviousChannelPushed?.Invoke();
         }
     }
 }

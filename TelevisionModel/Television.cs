@@ -33,6 +33,27 @@ namespace TelevisionModel
             Screen = screen;
         }
 
+        public void RegisterRemoteControl(RemoteControl remoteControl)
+        {
+            remoteControl.PowerSwitchPushed += PowerSwitchPushed;
+            remoteControl.PreviousChannelPushed += SelectPreviousChannel;
+            remoteControl.NextChannelPushed += SelectNextChannel;
+        }
+
+        public void UnregisterRemoteControl(RemoteControl remoteControl)
+        {
+            try
+            {
+                remoteControl.PowerSwitchPushed -= PowerSwitchPushed;
+                remoteControl.PreviousChannelPushed -= SelectPreviousChannel;
+                remoteControl.NextChannelPushed -= SelectNextChannel;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Failed to unregister remote control {remoteControl}", e);
+            }
+        }
+
         private void TurnOn()
         {
             if (IsTurnedOn)
@@ -63,7 +84,7 @@ namespace TelevisionModel
             else TurnOn();
         }
 
-        private void SelectNextChannel()
+        public void SelectNextChannel()
         {
             if (!IsTurnedOn) throw new InvalidOperationException("The television is not turned on");
 
@@ -71,7 +92,7 @@ namespace TelevisionModel
             if (SelectedChannel >= AvailableChannels.Count) SelectedChannel = 0;
         }
 
-        private void SelectPreviousChannel()
+        public void SelectPreviousChannel()
         {
             if (!IsTurnedOn) throw new InvalidOperationException("The television is not turned on");
 
