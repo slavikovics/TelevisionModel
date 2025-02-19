@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TelevisionModel.Data;
 
 namespace TelevisionModel
 {
@@ -40,12 +41,12 @@ namespace TelevisionModel
         {
             if (newResolutionX > MaxResolutionX || newResolutionY > MaxResolutionY)
             {
-                throw new ArgumentException("Resolution must be between 0 and MaxResolution");
+                throw new ArgumentException(Resources.ResolutionRestrictionsErrorMessage);
             }
 
             if (newResolutionX < 0 || newResolutionY < 0)
             {
-                throw new ArgumentException("Resolution must be between 0 and MaxResolution");
+                throw new ArgumentException(Resources.ResolutionRestrictionsErrorMessage);
             }
             
             ResolutionX = newResolutionX;
@@ -56,7 +57,7 @@ namespace TelevisionModel
         {
             if (IsTurnedOn)
             {
-                throw new InvalidOperationException("The screen is already turned on");
+                throw new InvalidOperationException(Resources.ScreenIsAlreadyTurnedOnErrorMessage);
             }
             
             IsTurnedOn = true;
@@ -66,7 +67,7 @@ namespace TelevisionModel
         {
             if (!IsTurnedOn)
             {
-                throw new InvalidOperationException("The screen is not turned on");
+                throw new InvalidOperationException(Resources.ScreenIsNotTurnedOnErrorMessage);
             }
             
             IsTurnedOn = false;

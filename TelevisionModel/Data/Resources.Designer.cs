@@ -96,6 +96,33 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resolution must be between 0 and MaxResolution.
+        /// </summary>
+        internal static string ResolutionRestrictionsErrorMessage {
+            get {
+                return ResourceManager.GetString("ResolutionRestrictionsErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The screen is already turned on.
+        /// </summary>
+        internal static string ScreenIsAlreadyTurnedOnErrorMessage {
+            get {
+                return ResourceManager.GetString("ScreenIsAlreadyTurnedOnErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The screen is not turned on.
+        /// </summary>
+        internal static string ScreenIsNotTurnedOnErrorMessage {
+            get {
+                return ResourceManager.GetString("ScreenIsNotTurnedOnErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The television channel with this name does not exist..
         /// </summary>
         internal static string TelevisionChannelDoesNotExistErrorMessage {
