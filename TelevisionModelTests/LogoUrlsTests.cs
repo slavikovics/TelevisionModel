@@ -8,8 +8,11 @@ namespace TelevisionModelTests
         [TestMethod]
         public void JsonParsingTest()
         {
-            Television television = new Television(new SoundSystem(12), new Screen(1920, 1080, "IPS", 120, 50));
-            television.FindChannels();
+            List<TelevisionChannel> channels = SignalTransmitter.FindChannels();
+            foreach (var channel in channels)
+            {
+                if (channel.Name == "" || channel.LogoPath == "") Assert.Fail();
+            }
         }
     }
 }

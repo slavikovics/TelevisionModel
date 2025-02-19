@@ -67,5 +67,68 @@ namespace TelevisionModel.Data {
                 return ResourceManager.GetString("BaseUrl", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data/logo_paths.json.
+        /// </summary>
+        internal static string ChannelsDataRelativePath {
+            get {
+                return ResourceManager.GetString("ChannelsDataRelativePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The television channel with the same name already exists..
+        /// </summary>
+        internal static string ChannelWithTheSameNameAlreadyExistsErrorMessage {
+            get {
+                return ResourceManager.GetString("ChannelWithTheSameNameAlreadyExistsErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to unregister remote control..
+        /// </summary>
+        internal static string FaildToUnregisterRemoteControlErrorMessage {
+            get {
+                return ResourceManager.GetString("FaildToUnregisterRemoteControlErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The television channel with this name does not exist..
+        /// </summary>
+        internal static string TelevisionChannelDoesNotExistErrorMessage {
+            get {
+                return ResourceManager.GetString("TelevisionChannelDoesNotExistErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The television is already turned on..
+        /// </summary>
+        internal static string TelevisionIsAlreadyTurnedOnErrorMessage {
+            get {
+                return ResourceManager.GetString("TelevisionIsAlreadyTurnedOnErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The television is not turned on..
+        /// </summary>
+        internal static string TelevisionIsNotTurnedOnErrorMessage {
+            get {
+                return ResourceManager.GetString("TelevisionIsNotTurnedOnErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Television to Pair is null..
+        /// </summary>
+        internal static string TelevisionToPairIsNullErrorMessage {
+            get {
+                return ResourceManager.GetString("TelevisionToPairIsNullErrorMessage", resourceCulture);
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using TelevisionModel.Data;
 
 namespace TelevisionModel
 {
@@ -31,6 +32,7 @@ namespace TelevisionModel
             SelectedChannel = 0;
             SoundSystem = soundSystem;
             Screen = screen;
+            AvailableChannels = SignalTransmitter.FindChannels();
         }
 
         public void RegisterRemoteControl(RemoteControl remoteControl)
@@ -38,6 +40,7 @@ namespace TelevisionModel
             remoteControl.PowerSwitchPushed += PowerSwitchPushed;
             remoteControl.PreviousChannelPushed += SelectPreviousChannel;
             remoteControl.NextChannelPushed += SelectNextChannel;
+            remoteControl.ChangeVolumePushed += SoundSystem.EditVolume;
         }
 
         public void UnregisterRemoteControl(RemoteControl remoteControl)
@@ -47,10 +50,11 @@ namespace TelevisionModel
                 remoteControl.PowerSwitchPushed -= PowerSwitchPushed;
                 remoteControl.PreviousChannelPushed -= SelectPreviousChannel;
                 remoteControl.NextChannelPushed -= SelectNextChannel;
+                remoteControl.ChangeVolumePushed -= SoundSystem.EditVolume;
             }
             catch (Exception e)
             {
-                throw new Exception($"Failed to unregister remote control {remoteControl}", e);
+                throw new Exception($"{Resources.FaildToUnregisterRemoteControlErrorMessage} Name: {remoteControl.Name}", e);
             }
         }
 
@@ -58,7 +62,7 @@ namespace TelevisionModel
         {
             if (IsTurnedOn)
             {
-                throw new InvalidOperationException("The television is already turned on");
+                throw new InvalidOperationException(Resources.TelevisionIsAlreadyTurnedOnErrorMessage);
             }
             
             Screen.TurnOn();
@@ -70,7 +74,7 @@ namespace TelevisionModel
         {
             if (!IsTurnedOn)
             {
-                throw new InvalidOperationException("The television is not turned on");
+                throw new InvalidOperationException(Resources.TelevisionIsNotTurnedOnErrorMessage);
             }
             
             Screen.TurnOff();
@@ -86,7 +90,7 @@ namespace TelevisionModel
 
         public void SelectNextChannel()
         {
-            if (!IsTurnedOn) throw new InvalidOperationException("The television is not turned on");
+            if (!IsTurnedOn) throw new InvalidOperationException(Resources.TelevisionIsNotTurnedOnErrorMessage);
 
             SelectedChannel++;
             if (SelectedChannel >= AvailableChannels.Count) SelectedChannel = 0;
@@ -94,42 +98,10 @@ namespace TelevisionModel
 
         public void SelectPreviousChannel()
         {
-            if (!IsTurnedOn) throw new InvalidOperationException("The television is not turned on");
+            if (!IsTurnedOn) throw new InvalidOperationException(Resources.TelevisionIsNotTurnedOnErrorMessage);
 
             SelectedChannel--;
             if (SelectedChannel < 0) SelectedChannel = AvailableChannels.Count - 1;
-        }
-
-        private void AddTelevisionChannel(string channelName, string? logoPath)
-        {
-            if (logoPath is null) return;
-            
-            foreach (TelevisionChannel channel in AvailableChannels)
-            {
-                if (channel.Name == channelName) throw new ArgumentException($"The television channel with the same name already exists. Name: {channelName}.");
-            }
-            
-            TelevisionChannel televisionChannel = new TelevisionChannel(logoPath, channelName);
-            AvailableChannels.Add(televisionChannel);
-        }
-
-        public void RemoveTelevisionChannel(string channelName)
-        {
-            TelevisionChannel? channelToRemove = AvailableChannels.Find(channel => channel.Name == channelName);
-            if (channelToRemove is null) throw new ArgumentException("The television channel with this name does not exist");
-
-            AvailableChannels.Remove(channelToRemove);
-        }
-
-        public void FindChannels()
-        {
-            string text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/logo_paths.json"));
-            JsonDocument jsonDocument = JsonDocument.Parse(text);
-
-            foreach (var property in jsonDocument.RootElement.EnumerateObject())
-            {
-                AddTelevisionChannel(property.Name, property.Value.GetString());
-            }
         }
     }
 }

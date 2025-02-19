@@ -21,4 +21,25 @@
     <data name="BaseUrl" xml:space="preserve">
         <value>https://jaruba.github.io/channel-logos/export/transparent-color/</value>
     </data>
+    <data name="TelevisionChannelDoesNotExistErrorMessage" xml:space="preserve">
+        <value>The television channel with this name does not exist.</value>
+    </data>
+    <data name="ChannelsDataRelativePath" xml:space="preserve">
+        <value>Data/logo_paths.json</value>
+    </data>
+    <data name="ChannelWithTheSameNameAlreadyExistsErrorMessage" xml:space="preserve">
+        <value>The television channel with the same name already exists.</value>
+    </data>
+    <data name="TelevisionIsNotTurnedOnErrorMessage" xml:space="preserve">
+        <value>The television is not turned on.</value>
+    </data>
+    <data name="FaildToUnregisterRemoteControlErrorMessage" xml:space="preserve">
+        <value>Failed to unregister remote control.</value>
+    </data>
+    <data name="TelevisionIsAlreadyTurnedOnErrorMessage" xml:space="preserve">
+        <value>The television is already turned on.</value>
+    </data>
+    <data name="TelevisionToPairIsNullErrorMessage" xml:space="preserve">
+        <value>Television to Pair is null.</value>
+    </data>
 </root>

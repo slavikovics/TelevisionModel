@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TelevisionModel.Data;
 
 namespace TelevisionModel
 {
@@ -16,7 +17,7 @@ namespace TelevisionModel
         
         public delegate void PreviousChannel();
         
-        private delegate void ChangeVolumePushed();
+        public delegate void ChangeVolume(double newVolume);
         
         public PowerSwitch PowerSwitchPushed;
         
@@ -24,9 +25,11 @@ namespace TelevisionModel
         
         public PreviousChannel PreviousChannelPushed;
 
+        public ChangeVolume ChangeVolumePushed;
+
         public RemoteControl(Television televisionToPair, string name, string function) : base(name, function)
         {
-            if (televisionToPair is null) throw new ArgumentException("Television to Pair is null");
+            if (televisionToPair is null) throw new ArgumentException(Resources.TelevisionToPairIsNullErrorMessage);
             PairedTelevision = televisionToPair;
             PairedTelevision.RegisterRemoteControl(this);
         }
@@ -52,5 +55,7 @@ namespace TelevisionModel
         {
             PreviousChannelPushed?.Invoke();
         }
+        
+        
     }
 }
