@@ -23,5 +23,10 @@ namespace TelevisionModel.Content
         {
             return Resources.BaseUrl + LogoPath;
         }
+
+        public override string ToString()
+        {
+            return $"Channel: {Name} {Environment.NewLine} LogoPath: {LogoPath}.";
+        }
     }
 }

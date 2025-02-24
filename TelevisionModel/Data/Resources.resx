@@ -30,25 +30,13 @@
     <data name="ChannelWithTheSameNameAlreadyExistsErrorMessage" xml:space="preserve">
         <value>The television channel with the same name already exists.</value>
     </data>
-    <data name="TelevisionIsNotTurnedOnErrorMessage" xml:space="preserve">
-        <value>The television is not turned on.</value>
-    </data>
     <data name="FaildToUnregisterRemoteControlErrorMessage" xml:space="preserve">
         <value>Failed to unregister remote control.</value>
-    </data>
-    <data name="TelevisionIsAlreadyTurnedOnErrorMessage" xml:space="preserve">
-        <value>The television is already turned on.</value>
     </data>
     <data name="TelevisionToPairIsNullErrorMessage" xml:space="preserve">
         <value>Television to Pair is null.</value>
     </data>
     <data name="ResolutionRestrictionsErrorMessage" xml:space="preserve">
         <value>Resolution must be between 0 and MaxResolution</value>
-    </data>
-    <data name="ScreenIsNotTurnedOnErrorMessage" xml:space="preserve">
-        <value>The screen is not turned on</value>
-    </data>
-    <data name="ScreenIsAlreadyTurnedOnErrorMessage" xml:space="preserve">
-        <value>The screen is already turned on</value>
     </data>
 </root>

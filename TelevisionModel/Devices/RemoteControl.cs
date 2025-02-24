@@ -12,7 +12,7 @@ namespace TelevisionModel
         
         public delegate ActionResult PreviousChannelButton();
 
-        public delegate ActionResult ChangeResolutionButton(double newResolutionX, double newResolutionY);
+        public delegate ActionResult ChangeResolutionButton(int newResolutionX, int newResolutionY);
         
         public delegate ActionResult UpdateSoftwareButton(string newSoftwareVersion);
         
@@ -24,27 +24,27 @@ namespace TelevisionModel
         
         public delegate ActionResult ExternalDeviceScreencastButton(Device externalDevice);
         
-        public delegate ActionResult EditVolumeutton(double newVolume);
+        public delegate ActionResult EditVolumeButton(double newVolume);
         
-        public PowerSwitchButton PowerSwitchButtonPushed;
+        public PowerSwitchButton? PowerSwitchButtonPushed;
         
-        public NextChannelButton NextChannelButtonPushed;
+        public NextChannelButton? NextChannelButtonPushed;
         
-        public PreviousChannelButton PreviousChannelButtonPushed;
+        public PreviousChannelButton? PreviousChannelButtonPushed;
 
-        public EditVolumeutton EditVolumeButtonPushed;
+        public EditVolumeButton? EditVolumeButtonPushed;
         
-        public ChangeResolutionButton ChangeResolutionButtonPushed;
+        public ChangeResolutionButton? ChangeResolutionButtonPushed;
         
-        public UpdateSoftwareButton UpdateSoftwareButtonPushed;
+        public UpdateSoftwareButton? UpdateSoftwareButtonPushed;
         
-        public TelevisionBroadcastingButton TelevisionBroadcastingButtonPushed;
+        public TelevisionBroadcastingButton? TelevisionBroadcastingButtonPushed;
         
-        public StreamingButton StreamingButtonPushed;
+        public StreamingButton? StreamingButtonPushed;
         
-        public MainMenuButton MainMenuButtonPushed;
+        public MainMenuButton? MainMenuButtonPushed;
         
-        public ExternalDeviceScreencastButton ExternalDeviceScreencastButtonPushed;
+        public ExternalDeviceScreencastButton? ExternalDeviceScreencastButtonPushed;
         
 
         public RemoteControl(Television televisionToPair, string name, string function) : base(name, function)
@@ -80,7 +80,7 @@ namespace TelevisionModel
             return EditVolumeButtonPushed?.Invoke(newVolume);
         }
         
-        public ActionResult? ChangeResolution(double newResolutionX, double newResolutionY)
+        public ActionResult? ChangeResolution(int newResolutionX, int newResolutionY)
         {
             return ChangeResolutionButtonPushed?.Invoke(newResolutionX, newResolutionY);
         }

@@ -10,7 +10,7 @@ public interface ITelevisionState
 
     public ActionResult EditVolume(SoundSystem soundSystem, double newVolume);
 
-    public ActionResult ChangeResolution(Screen screen, double newResolutionX, double newResolutionY);
+    public ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY);
 
     public ActionResult UpdateSoftware(Software software, string newSoftwareVersion);
 

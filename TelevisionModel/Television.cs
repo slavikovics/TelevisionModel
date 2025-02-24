@@ -91,7 +91,7 @@ namespace TelevisionModel
             return CurrentState.EditVolume(SoundSystem, newVolume);
         }
         
-        private ActionResult ChangeResolution(double newResolutionX, double newResolutionY)
+        private ActionResult ChangeResolution(int newResolutionX, int newResolutionY)
         {
             return CurrentState.ChangeResolution(Screen, newResolutionX, newResolutionY);
         }

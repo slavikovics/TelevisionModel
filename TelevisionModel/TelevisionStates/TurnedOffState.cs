@@ -6,27 +6,27 @@ public class TurnedOffState : ITelevisionState
 {
     public ActionResult SwitchToNextChannel(ChannelBroadcastingSystem channelBroadcastingSystem)
     {
-        return new ActionResult("Cannot switch to next channel, when television is turned off.");
+        return new ActionResult("Cannot switch to next channel in this state.");
     }
 
     public ActionResult SwitchToPreviousChannel(ChannelBroadcastingSystem channelBroadcastingSystem)
     {
-        return new ActionResult("Cannot switch to previous channel, when television is turned off.");
+        return new ActionResult("Cannot switch to previous channel in this state.");
     }
 
     public ActionResult EditVolume(SoundSystem soundSystem, double newVolume)
     {
-        return new ActionResult("Cannot change volume, when television is turned off.");
+        return new ActionResult("Cannot change volume in this state.");
     }
 
-    public ActionResult ChangeResolution(Screen screen, double newResolutionX, double newResolutionY)
+    public ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY)
     {
-        return new ActionResult("Cannot change resolution, when television is turned off.");
+        return new ActionResult("Cannot change resolution in this state.");
     }
 
     public ActionResult UpdateSoftware(Software software, string newSoftwareVersion)
     {
-        return new ActionResult("Cannot update software, when television is turned off.");
+        return new ActionResult("Cannot update software in this state.");
     }
 
     public ActionResult SwitchToMainMenuState(Television television)
@@ -42,16 +42,16 @@ public class TurnedOffState : ITelevisionState
 
     public ActionResult SwitchToTelevisionBroadcastingState(Television television)
     {
-        return new ActionResult("Cannot switch to television broadcasting state, when television is turned off.");
+        return new ActionResult("Cannot switch to this state.");
     }
 
     public ActionResult SwitchToStreamingState(Television television)
     {
-        return new ActionResult("Cannot switch to streaming state, when television is turned off.");
+        return new ActionResult("Cannot switch to this state.");
     }
 
     public ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice)
     {
-        return new ActionResult("Cannot switch to external device screencast state, when television is turned off.");
+        return new ActionResult("Cannot switch to this state.");
     }
 }

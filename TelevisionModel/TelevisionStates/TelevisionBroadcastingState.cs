@@ -19,7 +19,7 @@ public class TelevisionBroadcastingState : ITelevisionState
         throw new NotImplementedException();
     }
 
-    public ActionResult ChangeResolution(Screen screen, double newResolutionX, double newResolutionY)
+    public ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY)
     {
         throw new NotImplementedException();
     }

@@ -8,6 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace TelevisionModel.Data {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -102,47 +105,11 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The screen is already turned on.
-        /// </summary>
-        internal static string ScreenIsAlreadyTurnedOnErrorMessage {
-            get {
-                return ResourceManager.GetString("ScreenIsAlreadyTurnedOnErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The screen is not turned on.
-        /// </summary>
-        internal static string ScreenIsNotTurnedOnErrorMessage {
-            get {
-                return ResourceManager.GetString("ScreenIsNotTurnedOnErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The television channel with this name does not exist..
         /// </summary>
         internal static string TelevisionChannelDoesNotExistErrorMessage {
             get {
                 return ResourceManager.GetString("TelevisionChannelDoesNotExistErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The television is already turned on..
-        /// </summary>
-        internal static string TelevisionIsAlreadyTurnedOnErrorMessage {
-            get {
-                return ResourceManager.GetString("TelevisionIsAlreadyTurnedOnErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The television is not turned on..
-        /// </summary>
-        internal static string TelevisionIsNotTurnedOnErrorMessage {
-            get {
-                return ResourceManager.GetString("TelevisionIsNotTurnedOnErrorMessage", resourceCulture);
             }
         }
         
