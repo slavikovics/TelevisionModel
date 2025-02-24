@@ -10,6 +10,8 @@ namespace TelevisionModel
         
         private Screen Screen { get; }
         
+        private Software Software { get; }
+        
         private ChannelBroadcastingSystem CurrentChannelBroadcastingSystem { get; }
         
         public ITelevisionState CurrentState { get; set; } 
@@ -20,6 +22,7 @@ namespace TelevisionModel
             Screen = screen;
             CurrentState = new TurnedOffState();
             CurrentChannelBroadcastingSystem = new ChannelBroadcastingSystem();
+            Software = new Software("1.0");
         }
 
         public void RegisterRemoteControl(RemoteControl remoteControl)
@@ -27,7 +30,13 @@ namespace TelevisionModel
             remoteControl.PowerSwitchButtonPushed += PowerSwitchPushed;
             remoteControl.PreviousChannelButtonPushed += SwitchToPreviousChannel;
             remoteControl.NextChannelButtonPushed += SwitchToNextChannel;
-            remoteControl.EditVolumeuttonPushed += EditVolume;
+            remoteControl.EditVolumeButtonPushed += EditVolume;
+            remoteControl.ChangeResolutionButtonPushed += ChangeResolution;
+            remoteControl.UpdateSoftwareButtonPushed += UpdateSoftware;
+            remoteControl.MainMenuButtonPushed += SwitchToMainMenuState;
+            remoteControl.TelevisionBroadcastingButtonPushed += SwitchToTelevisionBroadcastingState;
+            remoteControl.StreamingButtonPushed += SwitchToStreamingState;
+            remoteControl.ExternalDeviceScreencastButtonPushed += SwitchToExternalDeviceScreencastState;
         }
 
         public void UnregisterRemoteControl(RemoteControl remoteControl)
@@ -37,7 +46,13 @@ namespace TelevisionModel
                 remoteControl.PowerSwitchButtonPushed -= PowerSwitchPushed;
                 remoteControl.PreviousChannelButtonPushed -= SwitchToPreviousChannel;
                 remoteControl.NextChannelButtonPushed -= SwitchToNextChannel;
-                remoteControl.EditVolumeuttonPushed -= EditVolume;
+                remoteControl.EditVolumeButtonPushed -= EditVolume;
+                remoteControl.ChangeResolutionButtonPushed -= ChangeResolution;
+                remoteControl.UpdateSoftwareButtonPushed -= UpdateSoftware;
+                remoteControl.MainMenuButtonPushed -= SwitchToMainMenuState;
+                remoteControl.TelevisionBroadcastingButtonPushed -= SwitchToTelevisionBroadcastingState;
+                remoteControl.StreamingButtonPushed -= SwitchToStreamingState;
+                remoteControl.ExternalDeviceScreencastButtonPushed -= SwitchToExternalDeviceScreencastState;
             }
             catch (Exception e)
             {
@@ -74,6 +89,36 @@ namespace TelevisionModel
         private ActionResult EditVolume(double newVolume)
         {
             return CurrentState.EditVolume(SoundSystem, newVolume);
+        }
+        
+        private ActionResult ChangeResolution(double newResolutionX, double newResolutionY)
+        {
+            return CurrentState.ChangeResolution(Screen, newResolutionX, newResolutionY);
+        }
+        
+        private ActionResult UpdateSoftware(string newSoftwareVersion)
+        {
+            return CurrentState.UpdateSoftware(Software, newSoftwareVersion);
+        }
+        
+        private ActionResult SwitchToMainMenuState()
+        {
+            return CurrentState.SwitchToMainMenuState(this);
+        }
+        
+        private ActionResult SwitchToTelevisionBroadcastingState()
+        {
+            return CurrentState.SwitchToTelevisionBroadcastingState(this);
+        }
+        
+        private ActionResult SwitchToStreamingState()
+        {
+            return CurrentState.SwitchToStreamingState(this);
+        }
+        
+        private ActionResult SwitchToExternalDeviceScreencastState(Device externalDevice)
+        {
+            return CurrentState.SwitchToExternalDeviceScreencastState(this, externalDevice);
         }
     }
 }
