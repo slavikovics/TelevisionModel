@@ -6,45 +6,45 @@ namespace TelevisionModel
     {
         private Television PairedTelevision { get; set; }
 
-        public delegate ActionResult PowerSwitch();
+        public delegate ActionResult PowerSwitchButton();
         
-        public delegate ActionResult NextChannel();
+        public delegate ActionResult NextChannelButton();
         
-        public delegate ActionResult PreviousChannel();
+        public delegate ActionResult PreviousChannelButton();
 
-        public delegate ActionResult ChangeResolution(double newResolutionX, double newResolutionY);
+        public delegate ActionResult ChangeResolutionButton(double newResolutionX, double newResolutionY);
         
-        public delegate ActionResult UpdateSoftware(string newSoftwareVersion);
+        public delegate ActionResult UpdateSoftwareButton(string newSoftwareVersion);
         
-        public delegate ActionResult TelevisionBroadcasting();
+        public delegate ActionResult TelevisionBroadcastingButton();
         
-        public delegate ActionResult Streaming();
+        public delegate ActionResult StreamingButton();
         
-        public delegate ActionResult MainMenu();
+        public delegate ActionResult MainMenuButton();
         
-        public delegate ActionResult ExternalDeviceScreencast(Device externalDevice);
+        public delegate ActionResult ExternalDeviceScreencastButton(Device externalDevice);
         
-        public delegate ActionResult EditVolume(double newVolume);
+        public delegate ActionResult EditVolumeutton(double newVolume);
         
-        public PowerSwitch PowerSwitchPushed;
+        public PowerSwitchButton PowerSwitchButtonPushed;
         
-        public NextChannel NextChannelPushed;
+        public NextChannelButton NextChannelButtonPushed;
         
-        public PreviousChannel PreviousChannelPushed;
+        public PreviousChannelButton PreviousChannelButtonPushed;
 
-        public EditVolume EditVolumePushed;
+        public EditVolumeutton EditVolumeButtonPushed;
         
-        public ChangeResolution ChangeResolutionPushed;
+        public ChangeResolutionButton ChangeResolutionButtonPushed;
         
-        public UpdateSoftware UpdateSoftwarePushed;
+        public UpdateSoftwareButton UpdateSoftwareButtonPushed;
         
-        public TelevisionBroadcasting TelevisionBroadcastingPushed;
+        public TelevisionBroadcastingButton TelevisionBroadcastingButtonPushed;
         
-        public Streaming StreamingPushed;
+        public StreamingButton StreamingButtonPushed;
         
-        public MainMenu MainMenuPushed;
+        public MainMenuButton MainMenuButtonPushed;
         
-        public ExternalDeviceScreencast ExternalDeviceScreencastPushed;
+        public ExternalDeviceScreencastButton ExternalDeviceScreencastButtonPushed;
         
 
         public RemoteControl(Television televisionToPair, string name, string function) : base(name, function)
@@ -60,24 +60,54 @@ namespace TelevisionModel
             PairedTelevision.RegisterRemoteControl(this);
         }
 
-        public ActionResult? PushPowerSwitch()
+        public ActionResult? PowerSwitch()
         {
-            return PowerSwitchPushed?.Invoke();
+            return PowerSwitchButtonPushed?.Invoke();
         }
 
-        public ActionResult? PushNextChannel()
+        public ActionResult? NextChannel()
         {
-            return NextChannelPushed?.Invoke();
+            return NextChannelButtonPushed?.Invoke();
         }
 
-        public ActionResult? PushPreviousChannel()
+        public ActionResult? PreviousChannel()
         {
-            return PreviousChannelPushed?.Invoke();
+            return PreviousChannelButtonPushed?.Invoke();
         }
 
-        public ActionResult? PushEditVolume(double newVolume)
+        public ActionResult? EditVolume(double newVolume)
         {
-            return EditVolumePushed?.Invoke(newVolume);
+            return EditVolumeButtonPushed?.Invoke(newVolume);
+        }
+        
+        public ActionResult? ChangeResolution(double newResolutionX, double newResolutionY)
+        {
+            return ChangeResolutionButtonPushed?.Invoke(newResolutionX, newResolutionY);
+        }
+        
+        public ActionResult? UpdateSoftware(string newSoftwareVersion)
+        {
+            return UpdateSoftwareButtonPushed?.Invoke(newSoftwareVersion);
+        }
+        
+        public ActionResult? TelevisionBroadcasting()
+        {
+            return TelevisionBroadcastingButtonPushed?.Invoke();
+        }
+        
+        public ActionResult? Streaming()
+        {
+            return StreamingButtonPushed?.Invoke();
+        }
+        
+        public ActionResult? MainMenu()
+        {
+            return MainMenuButtonPushed?.Invoke();
+        }
+        
+        public ActionResult? ExternalDeviceScreencast(Device externalDevice)
+        {
+            return ExternalDeviceScreencastButtonPushed?.Invoke(externalDevice);
         }
     }
 }

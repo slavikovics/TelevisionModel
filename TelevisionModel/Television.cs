@@ -24,20 +24,20 @@ namespace TelevisionModel
 
         public void RegisterRemoteControl(RemoteControl remoteControl)
         {
-            remoteControl.PowerSwitchPushed += PowerSwitchPushed;
-            remoteControl.PreviousChannelPushed += SwitchToPreviousChannel;
-            remoteControl.NextChannelPushed += SwitchToNextChannel;
-            remoteControl.EditVolumePushed += EditVolume;
+            remoteControl.PowerSwitchButtonPushed += PowerSwitchPushed;
+            remoteControl.PreviousChannelButtonPushed += SwitchToPreviousChannel;
+            remoteControl.NextChannelButtonPushed += SwitchToNextChannel;
+            remoteControl.EditVolumeuttonPushed += EditVolume;
         }
 
         public void UnregisterRemoteControl(RemoteControl remoteControl)
         {
             try
             {
-                remoteControl.PowerSwitchPushed -= PowerSwitchPushed;
-                remoteControl.PreviousChannelPushed -= SwitchToPreviousChannel;
-                remoteControl.NextChannelPushed -= SwitchToNextChannel;
-                remoteControl.EditVolumePushed -= EditVolume;
+                remoteControl.PowerSwitchButtonPushed -= PowerSwitchPushed;
+                remoteControl.PreviousChannelButtonPushed -= SwitchToPreviousChannel;
+                remoteControl.NextChannelButtonPushed -= SwitchToNextChannel;
+                remoteControl.EditVolumeuttonPushed -= EditVolume;
             }
             catch (Exception e)
             {
