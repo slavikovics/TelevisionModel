@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TelevisionModel.Data;
+﻿using TelevisionModel.Data;
 
 namespace TelevisionModel
 {
@@ -22,12 +17,9 @@ namespace TelevisionModel
         public double Height { get; }
         
         public double Width { get; }
-        
-        private bool IsTurnedOn { get; set; }
 
         public Screen(int maxResolutionX, int maxResolutionY, string matrixType, double height, double width)
         {
-            IsTurnedOn = false;
             ResolutionX = maxResolutionX;
             ResolutionY = maxResolutionY;
             MaxResolutionX = maxResolutionX;
@@ -51,26 +43,6 @@ namespace TelevisionModel
             
             ResolutionX = newResolutionX;
             ResolutionY = newResolutionY;
-        }
-
-        public void TurnOn()
-        {
-            if (IsTurnedOn)
-            {
-                throw new InvalidOperationException(Resources.ScreenIsAlreadyTurnedOnErrorMessage);
-            }
-            
-            IsTurnedOn = true;
-        }
-
-        public void TurnOff()
-        {
-            if (!IsTurnedOn)
-            {
-                throw new InvalidOperationException(Resources.ScreenIsNotTurnedOnErrorMessage);
-            }
-            
-            IsTurnedOn = false;
         }
 
         public string BuildInfoString()

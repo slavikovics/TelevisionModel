@@ -1,7 +1,7 @@
 using System.Text.Json;
 using TelevisionModel.Data;
 
-namespace TelevisionModel;
+namespace TelevisionModel.Content;
 
 public static class SignalTransmitter
 {

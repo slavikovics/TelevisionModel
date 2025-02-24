@@ -1,46 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using TelevisionModel.Content;
 using TelevisionModel.Data;
+using TelevisionModel.TelevisionStates;
 
 namespace TelevisionModel
 {
     public class Television
     {
         private SoundSystem SoundSystem { get; }
-
+        
         private Screen Screen { get; }
         
-        private bool IsTurnedOn { get; set; }
+        private ChannelBroadcastingSystem CurrentChannelBroadcastingSystem { get; }
         
-        private List<Device> ConnectedDevices { get; set; }
-        
-        private List<TelevisionChannel> AvailableChannels { get; set; }
-        
-        private int SelectedChannel { get; set; }
-        
-        public TechnicalSpecifications TechnicalSpecifications { get; private set; }
+        public ITelevisionState CurrentState { get; set; } 
 
         public Television(SoundSystem soundSystem, Screen screen)
         {
-            ConnectedDevices = new List<Device>();
-            AvailableChannels = new List<TelevisionChannel>();
-            IsTurnedOn = false;
-            SelectedChannel = 0;
             SoundSystem = soundSystem;
             Screen = screen;
-            AvailableChannels = SignalTransmitter.FindChannels();
+            CurrentState = new TurnedOffState();
+            CurrentChannelBroadcastingSystem = new ChannelBroadcastingSystem();
         }
 
         public void RegisterRemoteControl(RemoteControl remoteControl)
         {
             remoteControl.PowerSwitchPushed += PowerSwitchPushed;
-            remoteControl.PreviousChannelPushed += SelectPreviousChannel;
-            remoteControl.NextChannelPushed += SelectNextChannel;
-            remoteControl.ChangeVolumePushed += SoundSystem.EditVolume;
+            remoteControl.PreviousChannelPushed += SwitchToPreviousChannel;
+            remoteControl.NextChannelPushed += SwitchToNextChannel;
+            remoteControl.ChangeVolumePushed += EditVolume;
         }
 
         public void UnregisterRemoteControl(RemoteControl remoteControl)
@@ -48,9 +35,9 @@ namespace TelevisionModel
             try
             {
                 remoteControl.PowerSwitchPushed -= PowerSwitchPushed;
-                remoteControl.PreviousChannelPushed -= SelectPreviousChannel;
-                remoteControl.NextChannelPushed -= SelectNextChannel;
-                remoteControl.ChangeVolumePushed -= SoundSystem.EditVolume;
+                remoteControl.PreviousChannelPushed -= SwitchToPreviousChannel;
+                remoteControl.NextChannelPushed -= SwitchToNextChannel;
+                remoteControl.ChangeVolumePushed -= EditVolume;
             }
             catch (Exception e)
             {
@@ -58,50 +45,35 @@ namespace TelevisionModel
             }
         }
 
-        private void TurnOn()
+        private ActionResult TurnOn()
         {
-            if (IsTurnedOn)
-            {
-                throw new InvalidOperationException(Resources.TelevisionIsAlreadyTurnedOnErrorMessage);
-            }
-            
-            Screen.TurnOn();
-            SoundSystem.TurnOn();
-            IsTurnedOn = true;
+            return CurrentState.SwitchToMainMenuState(this);
         }
 
-        private void TurnOff()
+        private ActionResult TurnOff()
         {
-            if (!IsTurnedOn)
-            {
-                throw new InvalidOperationException(Resources.TelevisionIsNotTurnedOnErrorMessage);
-            }
-            
-            Screen.TurnOff();
-            SoundSystem.TurnOff();
-            IsTurnedOn = false;
+            return CurrentState.SwitchToTurnedOffState(this);
         }
 
-        public void PowerSwitchPushed()
+        private ActionResult PowerSwitchPushed()
         {
-            if (IsTurnedOn) TurnOff();
-            else TurnOn();
+            if (CurrentState is not TurnedOffState) return TurnOff();
+            return TurnOn();
         }
 
-        public void SelectNextChannel()
+        private ActionResult SwitchToNextChannel()
         {
-            if (!IsTurnedOn) throw new InvalidOperationException(Resources.TelevisionIsNotTurnedOnErrorMessage);
-
-            SelectedChannel++;
-            if (SelectedChannel >= AvailableChannels.Count) SelectedChannel = 0;
+            return CurrentState.SwitchToNextChannel(CurrentChannelBroadcastingSystem);
         }
 
-        public void SelectPreviousChannel()
+        private ActionResult SwitchToPreviousChannel()
         {
-            if (!IsTurnedOn) throw new InvalidOperationException(Resources.TelevisionIsNotTurnedOnErrorMessage);
+            return CurrentState.SwitchToPreviousChannel(CurrentChannelBroadcastingSystem);
+        }
 
-            SelectedChannel--;
-            if (SelectedChannel < 0) SelectedChannel = AvailableChannels.Count - 1;
+        private ActionResult EditVolume(double newVolume)
+        {
+            return CurrentState.EditVolume(SoundSystem, newVolume);
         }
     }
 }

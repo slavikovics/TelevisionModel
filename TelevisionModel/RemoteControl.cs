@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TelevisionModel.Data;
+﻿using TelevisionModel.Data;
 
 namespace TelevisionModel
 {
@@ -11,13 +6,13 @@ namespace TelevisionModel
     {
         private Television PairedTelevision { get; set; }
 
-        public delegate void PowerSwitch();
+        public delegate ActionResult PowerSwitch();
         
-        public delegate void NextChannel();
+        public delegate ActionResult NextChannel();
         
-        public delegate void PreviousChannel();
+        public delegate ActionResult PreviousChannel();
         
-        public delegate void ChangeVolume(double newVolume);
+        public delegate ActionResult ChangeVolume(double newVolume);
         
         public PowerSwitch PowerSwitchPushed;
         
@@ -55,7 +50,5 @@ namespace TelevisionModel
         {
             PreviousChannelPushed?.Invoke();
         }
-        
-        
     }
 }

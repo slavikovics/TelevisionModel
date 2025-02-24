@@ -1,4 +1,4 @@
-﻿using System.Threading.Channels;
+﻿using TelevisionModel.Content;
 
 namespace TelevisionModel.TelevisionStates;
 
@@ -8,11 +8,11 @@ public interface ITelevisionState
     
     public ActionResult SwitchToPreviousChannel(ChannelBroadcastingSystem channelBroadcastingSystem);
 
-    public ActionResult ChangeVolume(SoundSystem soundSystem);
+    public ActionResult EditVolume(SoundSystem soundSystem, double newVolume);
 
-    public ActionResult ChangeResolution(Screen screen);
+    public ActionResult ChangeResolution(Screen screen, double newResolutionX, double newResolutionY);
 
-    public ActionResult UpdateSoftware(Software software);
+    public ActionResult UpdateSoftware(Software software, string newSoftwareVersion);
 
     public ActionResult SwitchToMainMenuState(Television television);
     
@@ -22,5 +22,5 @@ public interface ITelevisionState
     
     public ActionResult SwitchToStreamingState(Television television);
     
-    public ActionResult SwitchToExternalDeviceScreencastState(Television television);
+    public ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice);
 }

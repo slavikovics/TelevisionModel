@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TelevisionModel.Data;
 
-namespace TelevisionModel
+namespace TelevisionModel.Content
 {
     public class TelevisionChannel
     {

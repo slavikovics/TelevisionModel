@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TelevisionModel
+﻿namespace TelevisionModel
 {
     public class SoundSystem
     {
@@ -34,26 +28,6 @@ namespace TelevisionModel
 
             IsMuted = !(newVolume > 0);
             Volume = newVolume;
-        }
-
-        public void TurnOn()
-        {
-            if (IsTurnedOn)
-            {
-                throw new InvalidOperationException("The sound system is already turned on");
-            }
-            
-            IsTurnedOn = true;
-        }
-
-        public void TurnOff()
-        {
-            if (!IsTurnedOn)
-            {
-                throw new InvalidOperationException("The sound system is not turned on");
-            }
-            
-            IsTurnedOn = false;
         }
     }
 }

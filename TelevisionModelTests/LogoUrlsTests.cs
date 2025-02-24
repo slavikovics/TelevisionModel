@@ -1,4 +1,5 @@
 ﻿using TelevisionModel;
+using TelevisionModel.Content;
 
 namespace TelevisionModelTests
 {
