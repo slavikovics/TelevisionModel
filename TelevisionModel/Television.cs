@@ -27,7 +27,7 @@ namespace TelevisionModel
             remoteControl.PowerSwitchPushed += PowerSwitchPushed;
             remoteControl.PreviousChannelPushed += SwitchToPreviousChannel;
             remoteControl.NextChannelPushed += SwitchToNextChannel;
-            remoteControl.ChangeVolumePushed += EditVolume;
+            remoteControl.EditVolumePushed += EditVolume;
         }
 
         public void UnregisterRemoteControl(RemoteControl remoteControl)
@@ -37,7 +37,7 @@ namespace TelevisionModel
                 remoteControl.PowerSwitchPushed -= PowerSwitchPushed;
                 remoteControl.PreviousChannelPushed -= SwitchToPreviousChannel;
                 remoteControl.NextChannelPushed -= SwitchToNextChannel;
-                remoteControl.ChangeVolumePushed -= EditVolume;
+                remoteControl.EditVolumePushed -= EditVolume;
             }
             catch (Exception e)
             {
