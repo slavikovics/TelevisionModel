@@ -15,7 +15,9 @@ namespace TelevisionModel
         
         private ChannelBroadcastingSystem CurrentChannelBroadcastingSystem { get; }
         
-        public ITelevisionState CurrentState { get; set; } 
+        public ITelevisionState CurrentState { get; set; }
+        
+        public States State { get; set; }
 
         public Television(SoundSystem soundSystem, Screen screen)
         {
@@ -65,6 +67,7 @@ namespace TelevisionModel
         private ActionResult TurnOn()
         {
             CurrentState = new MainMenuState();
+            State = States.MainMenu;
             return new ActionResult(Resources.ChangedToMainMenuState);
         }
 

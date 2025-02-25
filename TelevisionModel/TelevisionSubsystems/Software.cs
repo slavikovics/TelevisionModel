@@ -4,7 +4,7 @@ namespace TelevisionModel
 {
     public class Software
     {
-        private string InstalledVersion { get; set; }
+        public string InstalledVersion { get; private set; }
 
         public Software(string installedVersion)
         {

@@ -77,30 +77,35 @@ public abstract class TurnedOnStateBase : ITelevisionState
     public virtual ActionResult SwitchToMainMenuState(Television television)
     {
         television.CurrentState = new MainMenuState();
+        television.State = States.MainMenu;
         return new ActionResult(Resources.ChangedToMainMenuState);
     }
 
     public virtual ActionResult SwitchToTurnedOffState(Television television)
     {
         television.CurrentState = new TurnedOffState();
+        television.State = States.TurnedOff;
         return new ActionResult(Resources.ChangedToTurnedOffState);
     }
 
     public virtual ActionResult SwitchToTelevisionBroadcastingState(Television television)
     {
         television.CurrentState = new TelevisionBroadcastingState();
+        television.State = States.TelevisionBroadcasting;
         return new ActionResult(Resources.ChangedToTelevisionBroadcastingState);
     }
 
     public virtual ActionResult SwitchToStreamingState(Television television)
     {
         television.CurrentState = new StreamingState();
+        television.State = States.Streaming;
         return new ActionResult(Resources.ChangedToStreamingState);
     }
 
     public virtual ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice)
     {
         television.CurrentState = new TurnedOffState();
+        television.State = States.ExternalDeviceScreencast;
         return new ActionResult(Resources.ChangedToExternalDeviceScreencastState);
     }
 }

@@ -11,5 +11,6 @@ static class Program
         RemoteControl remoteControl = new RemoteControl(television);
         CommandLineInterface commandLineInterface = new CommandLineInterface(remoteControl);
         commandLineInterface.UserInteraction();
+        Saver.SaveToFile(television);
     }
 }

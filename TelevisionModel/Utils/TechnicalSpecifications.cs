@@ -2,31 +2,30 @@
 
 namespace TelevisionModel.Utils
 {
-    public class TechnicalSpecifications
+    public class TechnicalSpecifications(
+        Screen screen,
+        SoundSystem soundSystem,
+        Software software,
+        States state,
+        int selectedChannel,
+        int selectedStreaming)
     {
-        private int ScreenMaxResolutionX { get; }
-        
-        private int ScreenMaxResolutionY { get; }
-        
-        public string ScreenMatrixType { get; }
-        
-        public double ScreenHeight { get; }
-        
-        public double ScreenWidth { get; }
-        
-        public double SoundSystemPower { get; }
-        
-        public TechnicalSpecifications(Screen screen, SoundSystem soundSystem)
-        {
-            ScreenMaxResolutionX = screen.MaxResolutionX;
-            ScreenMaxResolutionY = screen.MaxResolutionY;   
-            ScreenMatrixType = screen.MatrixType;
-            ScreenHeight = screen.Height;
-            ScreenWidth = screen.Width;
-            SoundSystemPower = soundSystem.Power;
+        public States State { get; } = state;
+        public int ResolutionX { get; } = screen.MaxResolutionX;
 
-            string json = JsonSerializer.Serialize(screen);
-            Console.WriteLine(json);
+        public int ResolutionY { get; } = screen.MaxResolutionY;
+
+        public double CurrentVolume { get; } = soundSystem.Volume;
+
+        public string SoftwareVersion { get; } = software.InstalledVersion;
+
+        public int SelectedTelevisionSeriesIndex { get; } = selectedStreaming;
+
+        public double SelectedChannelIndex { get; } = selectedChannel;
+
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this);
         }
     }
 }
