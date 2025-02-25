@@ -19,7 +19,6 @@ public class CommandLineInterface
         _remoteControl = remoteControl;
         FillCommands();
         BuildOptions();
-        Update();
     }
 
     private void FillCommands()
@@ -51,7 +50,7 @@ public class CommandLineInterface
         _options += "exit";
     }
 
-    private void Update()
+    private void UserInteraction()
     {
         while (true)
         {
