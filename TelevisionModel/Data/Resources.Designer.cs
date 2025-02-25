@@ -204,6 +204,74 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to television.json.
+        /// </summary>
+        internal static string SaveFileName {
+            get {
+                return ResourceManager.GetString("SaveFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 160.
+        /// </summary>
+        internal static int ScreenDefaultHeight {
+            get {
+                object obj = ResourceManager.GetObject("ScreenDefaultHeight", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IPS.
+        /// </summary>
+        internal static string ScreenDefaultMatrixType {
+            get {
+                return ResourceManager.GetString("ScreenDefaultMatrixType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 4096.
+        /// </summary>
+        internal static int ScreenDefaultResX {
+            get {
+                object obj = ResourceManager.GetObject("ScreenDefaultResX", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 2160.
+        /// </summary>
+        internal static int ScreenDefaultResY {
+            get {
+                object obj = ResourceManager.GetObject("ScreenDefaultResY", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 90.
+        /// </summary>
+        internal static int ScreenDefaultWidth {
+            get {
+                object obj = ResourceManager.GetObject("ScreenDefaultWidth", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 12.
+        /// </summary>
+        internal static int SoundSystemDefaultPower {
+            get {
+                object obj = ResourceManager.GetObject("SoundSystemDefaultPower", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The television channel with this name does not exist..
         /// </summary>
         internal static string TelevisionChannelDoesNotExistErrorMessage {
