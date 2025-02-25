@@ -7,31 +7,21 @@ namespace TelevisionModel
     {
         private Television PairedTelevision { get; set; }
 
-        public delegate ActionResult PowerSwitchButton();
-        
-        public delegate ActionResult NextChannelButton();
-        
-        public delegate ActionResult PreviousChannelButton();
+        public delegate ActionResult ZeroArgumentsButton();
 
         public delegate ActionResult ChangeResolutionButton(int newResolutionX, int newResolutionY);
         
         public delegate ActionResult UpdateSoftwareButton(string newSoftwareVersion);
         
-        public delegate ActionResult TelevisionBroadcastingButton();
-        
-        public delegate ActionResult StreamingButton();
-        
-        public delegate ActionResult MainMenuButton();
-        
         public delegate ActionResult ExternalDeviceScreencastButton(Device externalDevice);
         
         public delegate ActionResult EditVolumeButton(double newVolume);
         
-        public PowerSwitchButton? PowerSwitchButtonPushed;
+        public ZeroArgumentsButton? PowerSwitchButtonPushed;
         
-        public NextChannelButton? NextChannelButtonPushed;
+        public ZeroArgumentsButton? NextChannelButtonPushed;
         
-        public PreviousChannelButton? PreviousChannelButtonPushed;
+        public ZeroArgumentsButton? PreviousChannelButtonPushed;
 
         public EditVolumeButton? EditVolumeButtonPushed;
         
@@ -39,11 +29,11 @@ namespace TelevisionModel
         
         public UpdateSoftwareButton? UpdateSoftwareButtonPushed;
         
-        public TelevisionBroadcastingButton? TelevisionBroadcastingButtonPushed;
+        public ZeroArgumentsButton? TelevisionBroadcastingButtonPushed;
         
-        public StreamingButton? StreamingButtonPushed;
+        public ZeroArgumentsButton? StreamingButtonPushed;
         
-        public MainMenuButton? MainMenuButtonPushed;
+        public ZeroArgumentsButton? MainMenuButtonPushed;
         
         public ExternalDeviceScreencastButton? ExternalDeviceScreencastButtonPushed;
         
