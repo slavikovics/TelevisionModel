@@ -37,8 +37,7 @@ namespace TelevisionModel
         
         public ExternalDeviceScreencastButton? ExternalDeviceScreencastButtonPushed;
         
-
-        public RemoteControl(Television televisionToPair, string name, string function) : base(name, function)
+        public RemoteControl(Television televisionToPair, string name) : base(name)
         {
             PairedTelevision = televisionToPair ?? throw new ArgumentException(Resources.TelevisionToPairIsNullErrorMessage);
             PairedTelevision.RegisterRemoteControl(this);

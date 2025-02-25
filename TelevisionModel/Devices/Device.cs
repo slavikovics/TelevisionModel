@@ -4,12 +4,9 @@
     {
         public string Name { get; }
 
-        public string Function { get; }
-
-        public Device(string name, string function)
+        public Device(string name)
         {
             Name = name;
-            Function = function;
         }
     }
 }
