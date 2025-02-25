@@ -1,4 +1,5 @@
-﻿using TelevisionModel.Utils;
+﻿using TelevisionModel.Data;
+using TelevisionModel.Utils;
 
 namespace TelevisionModel.Content;
 
@@ -6,7 +7,7 @@ public class ChannelBroadcastingSystem : IContentProvider
 {
     private List<TelevisionChannel> AvailableChannels { get; set; }
     
-    private int SelectedChannelIndex { get; set; }
+    public int SelectedChannelIndex { get; private set; }
 
     public ChannelBroadcastingSystem()
     {
@@ -19,19 +20,38 @@ public class ChannelBroadcastingSystem : IContentProvider
         }
         catch (Exception e)
         {
-            throw new FormatException("Failed to load television channels.");
+            throw new FormatException(Resources.FailedToLoadChannels);
         }
     }
     
     public ActionResult SwitchToNext()
     {
-        //TODO add all checks
-        SelectedChannelIndex = SelectedChannelIndex > AvailableChannels.Count ? 0 : SelectedChannelIndex + 1;
+        if (AvailableChannels.Count == 0) return new ActionResult(Resources.FailedToLoadChannels);
+        SelectedChannelIndex = SelectedChannelIndex > AvailableChannels.Count - 2 ? 0 : SelectedChannelIndex + 1;
         return new ActionResult(AvailableChannels[SelectedChannelIndex].ToString());
     }
 
     public ActionResult SwitchToPrevious()
     {
-        throw new NotImplementedException();
+        if (AvailableChannels.Count == 0) return new ActionResult(Resources.FailedToLoadChannels);
+        SelectedChannelIndex = SelectedChannelIndex == 0 ? AvailableChannels.Count - 1 : SelectedChannelIndex - 1;
+        return new ActionResult(AvailableChannels[SelectedChannelIndex].ToString());
+    }
+
+    public ActionResult Greet()
+    {
+        ActionResult actionResult = new ActionResult(Resources.ChangedToTelevisionBroadcastingState);
+        actionResult.MessageDetails.Add("Available channels:");
+        
+        foreach (var channel in AvailableChannels)
+        {
+            actionResult.MessageDetails.Add(channel.ToString() + Environment.NewLine);
+        }
+        
+        actionResult.MessageDetails.Add("\n\n");
+        actionResult.MessageDetails.Add("Selected channel:");
+        actionResult.MessageDetails.Add(AvailableChannels[SelectedChannelIndex].ToString());
+        
+        return actionResult;
     }
 }

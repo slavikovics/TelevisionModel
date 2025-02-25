@@ -13,9 +13,13 @@ namespace TelevisionModel
         
         private Software Software { get; }
         
-        private ChannelBroadcastingSystem CurrentChannelBroadcastingSystem { get; }
+        public ChannelBroadcastingSystem CurrentChannelBroadcastingSystem { get; }
+        
+        public StreamingService StreamingService { get; }
         
         public ITelevisionState CurrentState { get; set; }
+        
+        public IContentProvider ContentProvider { get; set; }
         
         public States State { get; set; }
 
@@ -25,7 +29,8 @@ namespace TelevisionModel
             Screen = screen;
             CurrentState = new TurnedOffState();
             CurrentChannelBroadcastingSystem = new ChannelBroadcastingSystem();
-            Software = new Software("0.0");
+            StreamingService = new StreamingService();
+            Software = new Software();
             CurrentState = new TurnedOffState();
         }
 
@@ -84,12 +89,12 @@ namespace TelevisionModel
 
         private ActionResult SwitchToNextChannel()
         {
-            return CurrentState.SwitchToNextChannel(CurrentChannelBroadcastingSystem);
+            return CurrentState.SwitchToNextChannel(ContentProvider);
         }
 
         private ActionResult SwitchToPreviousChannel()
         {
-            return CurrentState.SwitchToPreviousChannel(CurrentChannelBroadcastingSystem);
+            return CurrentState.SwitchToPreviousChannel(ContentProvider);
         }
 
         private ActionResult EditVolume(double newVolume)
@@ -125,6 +130,13 @@ namespace TelevisionModel
         private ActionResult SwitchToExternalDeviceScreencastState(Device externalDevice)
         {
             return CurrentState.SwitchToExternalDeviceScreencastState(this, externalDevice);
+        }
+
+        public TechnicalSpecifications BuildTechnicalSpecifications()
+        {
+            TechnicalSpecifications technicalSpecifications = new TechnicalSpecifications(Screen, SoundSystem, Software, State, 
+                CurrentChannelBroadcastingSystem.SelectedChannelIndex, StreamingService.SelectedIndex);
+            return technicalSpecifications;
         }
     }
 }

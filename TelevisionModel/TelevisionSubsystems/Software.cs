@@ -6,7 +6,7 @@ namespace TelevisionModel
     {
         public string InstalledVersion { get; private set; }
 
-        public Software(string installedVersion)
+        public Software(string installedVersion = "0.0")
         {
             InstalledVersion = installedVersion;
         }

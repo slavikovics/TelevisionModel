@@ -90,16 +90,18 @@ public abstract class TurnedOnStateBase : ITelevisionState
 
     public virtual ActionResult SwitchToTelevisionBroadcastingState(Television television)
     {
+        television.ContentProvider = television.CurrentChannelBroadcastingSystem;
         television.CurrentState = new TelevisionBroadcastingState();
         television.State = States.TelevisionBroadcasting;
-        return new ActionResult(Resources.ChangedToTelevisionBroadcastingState);
+        return television.CurrentChannelBroadcastingSystem.Greet();
     }
 
     public virtual ActionResult SwitchToStreamingState(Television television)
     {
+        television.ContentProvider = television.StreamingService;
         television.CurrentState = new StreamingState();
         television.State = States.Streaming;
-        return new ActionResult(Resources.ChangedToStreamingState);
+        return television.StreamingService.Greet();
     }
 
     public virtual ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice)

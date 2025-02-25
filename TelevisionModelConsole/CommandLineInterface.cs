@@ -54,9 +54,11 @@ public class CommandLineInterface
     {
         while (true)
         {
+            
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine(_options);
             string? userInput = Console.ReadLine();
+            Console.Clear();
             
             if (userInput == null) continue;
 

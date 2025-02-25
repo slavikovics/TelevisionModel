@@ -73,7 +73,7 @@
         <value>Cannot change volume in this state.</value>
     </data>
     <data name="TelevisionSeriesPath" xml:space="preserve">
-        <value>/Data/tv_shows.json</value>
+        <value>Data/tv_shows.json</value>
     </data>
     <data name="SaveFileName" xml:space="preserve">
         <value>television.json</value>
@@ -95,5 +95,11 @@
     </data>
     <data name="ScreenDefaultWidth" type="System.Int32, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
         <value>90</value>
+    </data>
+    <data name="FailedToLoadChannels" xml:space="preserve">
+        <value>Failed to load television channels.</value>
+    </data>
+    <data name="FailedToLoadSeries" xml:space="preserve">
+        <value>Failed to load television series.</value>
     </data>
 </root>

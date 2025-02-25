@@ -44,15 +44,29 @@ public static class SignalTransmitter
         return _availableChannels;
     }
 
-    public static void FindSeries()
+    public static List<TelevisionSeries> FindSeries()
     {
         string text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Resources.TelevisionSeriesPath));
         JsonDocument jsonDocument = JsonDocument.Parse(text);
         
-
         foreach (var element in jsonDocument.RootElement.EnumerateArray())
         {
             element.TryGetProperty("url", out JsonElement urlElement);
+            element.TryGetProperty("name", out JsonElement nameElement);
+            element.TryGetProperty("summary", out JsonElement summaryElement);
+            element.TryGetProperty("image", out JsonElement imageElement);
+            imageElement.TryGetProperty("medium", out JsonElement linkElement);
+            
+            string? url = urlElement.GetString();
+            string? name = nameElement.GetString();
+            string? summary = summaryElement.GetString();
+            string? imageUrl = linkElement.GetString();
+            
+            if (url is null || name is null || summary is null || imageUrl is null) continue;
+            
+            _availableSeries.Add(new TelevisionSeries(name, url, imageUrl, summary));
         }
+        
+        return _availableSeries;
     }
 }

@@ -195,6 +195,24 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load television channels..
+        /// </summary>
+        internal static string FailedToLoadChannels {
+            get {
+                return ResourceManager.GetString("FailedToLoadChannels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load television series..
+        /// </summary>
+        internal static string FailedToLoadSeries {
+            get {
+                return ResourceManager.GetString("FailedToLoadSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resolution must be between 0 and MaxResolution.
         /// </summary>
         internal static string ResolutionRestrictionsErrorMessage {
@@ -281,7 +299,7 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Data/tv_shows.json.
+        ///   Looks up a localized string similar to Data/tv_shows.json.
         /// </summary>
         internal static string TelevisionSeriesPath {
             get {
