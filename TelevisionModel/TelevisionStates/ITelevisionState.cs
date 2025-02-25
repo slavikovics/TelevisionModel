@@ -1,12 +1,13 @@
 ﻿using TelevisionModel.Content;
+using TelevisionModel.Utils;
 
 namespace TelevisionModel.TelevisionStates;
 
 public interface ITelevisionState
 {
-    public ActionResult SwitchToNextChannel(ChannelBroadcastingSystem channelBroadcastingSystem);
+    public ActionResult SwitchToNextChannel(IContentProvider contentProvider);
     
-    public ActionResult SwitchToPreviousChannel(ChannelBroadcastingSystem channelBroadcastingSystem);
+    public ActionResult SwitchToPreviousChannel(IContentProvider contentProvider);
 
     public ActionResult EditVolume(SoundSystem soundSystem, double newVolume);
 

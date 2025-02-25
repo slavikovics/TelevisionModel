@@ -1,56 +1,23 @@
 ﻿using TelevisionModel.Content;
+using TelevisionModel.Data;
+using TelevisionModel.Utils;
 
 namespace TelevisionModel.TelevisionStates;
 
-public class StreamingState : ITelevisionState
+public class StreamingState : TurnedOnStateBase
 {
-    public ActionResult SwitchToNextChannel(ChannelBroadcastingSystem channelBroadcastingSystem)
+    public override ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY)
     {
-        throw new NotImplementedException();
+        return new ActionResult(Resources.CannotChangeResolution);
     }
-
-    public ActionResult SwitchToPreviousChannel(ChannelBroadcastingSystem channelBroadcastingSystem)
+    
+    public override ActionResult UpdateSoftware(Software software, string newSoftwareVersion)
     {
-        throw new NotImplementedException();
+        return new ActionResult(Resources.CannotUpdateSoftware);
     }
-
-    public ActionResult EditVolume(SoundSystem soundSystem, double newVolume)
+    
+    public override ActionResult SwitchToStreamingState(Television television)
     {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult UpdateSoftware(Software software, string newSoftwareVersion)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToMainMenuState(Television television)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToTurnedOffState(Television television)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToTelevisionBroadcastingState(Television television)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToStreamingState(Television television)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice)
-    {
-        throw new NotImplementedException();
+        return new ActionResult(Resources.CannotSwitchToThisState);
     }
 }

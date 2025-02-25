@@ -1,4 +1,6 @@
-﻿namespace TelevisionModel.Content;
+﻿using TelevisionModel.Utils;
+
+namespace TelevisionModel.Content;
 
 public interface IContentProvider
 {

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace TelevisionModel
+namespace TelevisionModel.Utils
 {
     public class TechnicalSpecifications
     {

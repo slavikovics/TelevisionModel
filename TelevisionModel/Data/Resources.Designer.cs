@@ -69,6 +69,105 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot change resolution in this state..
+        /// </summary>
+        internal static string CannotChangeResolution {
+            get {
+                return ResourceManager.GetString("CannotChangeResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot change volume in this state..
+        /// </summary>
+        internal static string CannotChangeVolume {
+            get {
+                return ResourceManager.GetString("CannotChangeVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot switch to next item in content provider in this state..
+        /// </summary>
+        internal static string CannotSwitchToNext {
+            get {
+                return ResourceManager.GetString("CannotSwitchToNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot switch to previous item in content provider in this state..
+        /// </summary>
+        internal static string CannotSwitchToPrevious {
+            get {
+                return ResourceManager.GetString("CannotSwitchToPrevious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot switch to this state..
+        /// </summary>
+        internal static string CannotSwitchToThisState {
+            get {
+                return ResourceManager.GetString("CannotSwitchToThisState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot update software in this state..
+        /// </summary>
+        internal static string CannotUpdateSoftware {
+            get {
+                return ResourceManager.GetString("CannotUpdateSoftware", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The state was changed to external device screencast state..
+        /// </summary>
+        internal static string ChangedToExternalDeviceScreencastState {
+            get {
+                return ResourceManager.GetString("ChangedToExternalDeviceScreencastState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The state was changed to main menu..
+        /// </summary>
+        internal static string ChangedToMainMenuState {
+            get {
+                return ResourceManager.GetString("ChangedToMainMenuState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The state was changed to streaming state..
+        /// </summary>
+        internal static string ChangedToStreamingState {
+            get {
+                return ResourceManager.GetString("ChangedToStreamingState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The state was changed to television broadcasting state..
+        /// </summary>
+        internal static string ChangedToTelevisionBroadcastingState {
+            get {
+                return ResourceManager.GetString("ChangedToTelevisionBroadcastingState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The state was changed to turned off state..
+        /// </summary>
+        internal static string ChangedToTurnedOffState {
+            get {
+                return ResourceManager.GetString("ChangedToTurnedOffState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data/logo_paths.json.
         /// </summary>
         internal static string ChannelsDataRelativePath {

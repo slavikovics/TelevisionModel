@@ -39,4 +39,37 @@
     <data name="ResolutionRestrictionsErrorMessage" xml:space="preserve">
         <value>Resolution must be between 0 and MaxResolution</value>
     </data>
+    <data name="CannotSwitchToThisState" xml:space="preserve">
+        <value>Cannot switch to this state.</value>
+    </data>
+    <data name="CannotUpdateSoftware" xml:space="preserve">
+        <value>Cannot update software in this state.</value>
+    </data>
+    <data name="CannotChangeResolution" xml:space="preserve">
+        <value>Cannot change resolution in this state.</value>
+    </data>
+    <data name="ChangedToMainMenuState" xml:space="preserve">
+        <value>The state was changed to main menu.</value>
+    </data>
+    <data name="ChangedToTurnedOffState" xml:space="preserve">
+        <value>The state was changed to turned off state.</value>
+    </data>
+    <data name="ChangedToTelevisionBroadcastingState" xml:space="preserve">
+        <value>The state was changed to television broadcasting state.</value>
+    </data>
+    <data name="ChangedToStreamingState" xml:space="preserve">
+        <value>The state was changed to streaming state.</value>
+    </data>
+    <data name="ChangedToExternalDeviceScreencastState" xml:space="preserve">
+        <value>The state was changed to external device screencast state.</value>
+    </data>
+    <data name="CannotSwitchToNext" xml:space="preserve">
+        <value>Cannot switch to next item in content provider in this state.</value>
+    </data>
+    <data name="CannotSwitchToPrevious" xml:space="preserve">
+        <value>Cannot switch to previous item in content provider in this state.</value>
+    </data>
+    <data name="CannotChangeVolume" xml:space="preserve">
+        <value>Cannot change volume in this state.</value>
+    </data>
 </root>

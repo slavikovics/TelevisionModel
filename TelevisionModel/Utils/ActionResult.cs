@@ -1,4 +1,4 @@
-﻿namespace TelevisionModel;
+﻿namespace TelevisionModel.Utils;
 
 public class ActionResult
 {

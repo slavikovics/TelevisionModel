@@ -1,6 +1,7 @@
 ﻿using TelevisionModel.Content;
 using TelevisionModel.Data;
 using TelevisionModel.TelevisionStates;
+using TelevisionModel.Utils;
 
 namespace TelevisionModel
 {
@@ -22,7 +23,7 @@ namespace TelevisionModel
             Screen = screen;
             CurrentState = new TurnedOffState();
             CurrentChannelBroadcastingSystem = new ChannelBroadcastingSystem();
-            Software = new Software("1.0");
+            Software = new Software("0.0");
         }
 
         public void RegisterRemoteControl(RemoteControl remoteControl)

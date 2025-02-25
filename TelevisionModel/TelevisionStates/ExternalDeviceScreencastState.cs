@@ -1,56 +1,33 @@
 ﻿using TelevisionModel.Content;
+using TelevisionModel.Data;
+using TelevisionModel.Utils;
 
 namespace TelevisionModel.TelevisionStates;
 
-public class ExternalDeviceScreencastState : ITelevisionState
+public class ExternalDeviceScreencastState : TurnedOnStateBase
 {
-    public ActionResult SwitchToNextChannel(ChannelBroadcastingSystem channelBroadcastingSystem)
+    public override ActionResult SwitchToNextChannel(IContentProvider contentProvider)
     {
-        throw new NotImplementedException();
+        return new ActionResult(Resources.CannotSwitchToNext);
     }
-
-    public ActionResult SwitchToPreviousChannel(ChannelBroadcastingSystem channelBroadcastingSystem)
+    
+    public override ActionResult SwitchToPreviousChannel(IContentProvider contentProvider)
     {
-        throw new NotImplementedException();
+        return new ActionResult(Resources.CannotSwitchToPrevious);
     }
-
-    public ActionResult EditVolume(SoundSystem soundSystem, double newVolume)
+    
+    public override ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY)
     {
-        throw new NotImplementedException();
+        return new ActionResult(Resources.CannotChangeResolution);
     }
-
-    public ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY)
+    
+    public override ActionResult UpdateSoftware(Software software, string newSoftwareVersion)
     {
-        throw new NotImplementedException();
+        return new ActionResult(Resources.CannotUpdateSoftware);
     }
-
-    public ActionResult UpdateSoftware(Software software, string newSoftwareVersion)
+    
+    public override ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice)
     {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToMainMenuState(Television television)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToTurnedOffState(Television television)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToTelevisionBroadcastingState(Television television)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToStreamingState(Television television)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice)
-    {
-        throw new NotImplementedException();
+        return new ActionResult(Resources.CannotSwitchToThisState);
     }
 }

@@ -1,57 +1,60 @@
 ﻿using TelevisionModel.Content;
+using TelevisionModel.Data;
+using TelevisionModel.Data;
+using TelevisionModel.Utils;
 
 namespace TelevisionModel.TelevisionStates;
 
 public class TurnedOffState : ITelevisionState
 {
-    public ActionResult SwitchToNextChannel(ChannelBroadcastingSystem channelBroadcastingSystem)
+    public ActionResult SwitchToNextChannel(IContentProvider contentProvider)
     {
-        return new ActionResult("Cannot switch to next channel in this state.");
+        return new ActionResult(Resources.CannotSwitchToNext);
     }
 
-    public ActionResult SwitchToPreviousChannel(ChannelBroadcastingSystem channelBroadcastingSystem)
+    public ActionResult SwitchToPreviousChannel(IContentProvider contentProvider)
     {
-        return new ActionResult("Cannot switch to previous channel in this state.");
+        return new ActionResult(Resources.CannotSwitchToPrevious);
     }
 
     public ActionResult EditVolume(SoundSystem soundSystem, double newVolume)
     {
-        return new ActionResult("Cannot change volume in this state.");
+        return new ActionResult(Resources.CannotChangeVolume);
     }
 
     public ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY)
     {
-        return new ActionResult("Cannot change resolution in this state.");
+        return new ActionResult(Resources.CannotChangeResolution);
     }
 
     public ActionResult UpdateSoftware(Software software, string newSoftwareVersion)
     {
-        return new ActionResult("Cannot update software in this state.");
+        return new ActionResult(Resources.CannotUpdateSoftware);
     }
 
     public ActionResult SwitchToMainMenuState(Television television)
     {
         television.CurrentState = new MainMenuState();
-        return new ActionResult("Television has been turned on successfully. Now you are in a main menu.");
+        return new ActionResult(Resources.ChangedToMainMenuState);
     }
 
     public ActionResult SwitchToTurnedOffState(Television television)
     {
-        return new ActionResult("Television is already turned off.");
+        return new ActionResult(Resources.CannotSwitchToThisState);
     }
 
     public ActionResult SwitchToTelevisionBroadcastingState(Television television)
     {
-        return new ActionResult("Cannot switch to this state.");
+        return new ActionResult(Resources.CannotSwitchToThisState);
     }
 
     public ActionResult SwitchToStreamingState(Television television)
     {
-        return new ActionResult("Cannot switch to this state.");
+        return new ActionResult(Resources.CannotSwitchToThisState);
     }
 
     public ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice)
     {
-        return new ActionResult("Cannot switch to this state.");
+        return new ActionResult(Resources.CannotSwitchToThisState);
     }
 }
