@@ -72,4 +72,7 @@
     <data name="CannotChangeVolume" xml:space="preserve">
         <value>Cannot change volume in this state.</value>
     </data>
+    <data name="TelevisionSeriesPath" xml:space="preserve">
+        <value>/Data/tv_shows.json</value>
+    </data>
 </root>

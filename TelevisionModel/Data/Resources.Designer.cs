@@ -213,6 +213,15 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /Data/tv_shows.json.
+        /// </summary>
+        internal static string TelevisionSeriesPath {
+            get {
+                return ResourceManager.GetString("TelevisionSeriesPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Television to Pair is null..
         /// </summary>
         internal static string TelevisionToPairIsNullErrorMessage {

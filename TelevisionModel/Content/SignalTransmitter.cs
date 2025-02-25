@@ -7,6 +7,8 @@ public static class SignalTransmitter
 {
     private static List<TelevisionChannel> _availableChannels = new List<TelevisionChannel>();
     
+    private static List<TelevisionSeries> _availableSeries = new List<TelevisionSeries>();
+    
     private static void AddTelevisionChannel(string channelName, string? logoPath)
     {
         if (logoPath is null) return;
@@ -40,5 +42,17 @@ public static class SignalTransmitter
         }
         
         return _availableChannels;
+    }
+
+    public static void FindSeries()
+    {
+        string text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Resources.TelevisionSeriesPath));
+        JsonDocument jsonDocument = JsonDocument.Parse(text);
+        
+
+        foreach (var element in jsonDocument.RootElement.EnumerateArray())
+        {
+            element.TryGetProperty("url", out JsonElement urlElement);
+        }
     }
 }

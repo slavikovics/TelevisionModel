@@ -26,6 +26,10 @@
     <Content Include="Data\logo_paths.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Remove="Data\tv_shows.json" />
+    <Content Include="Data\tv_shows.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
