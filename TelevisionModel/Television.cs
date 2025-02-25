@@ -24,6 +24,7 @@ namespace TelevisionModel
             CurrentState = new TurnedOffState();
             CurrentChannelBroadcastingSystem = new ChannelBroadcastingSystem();
             Software = new Software("0.0");
+            CurrentState = new TurnedOffState();
         }
 
         public void RegisterRemoteControl(RemoteControl remoteControl)
@@ -63,7 +64,8 @@ namespace TelevisionModel
 
         private ActionResult TurnOn()
         {
-            return CurrentState.SwitchToMainMenuState(this);
+            CurrentState = new MainMenuState();
+            return new ActionResult(Resources.ChangedToMainMenuState);
         }
 
         private ActionResult TurnOff()

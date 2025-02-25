@@ -2,7 +2,7 @@
 
 namespace TelevisionModelConsole;
 
-class Program
+static class Program
 {
     static void Main(string[] args)
     {
@@ -11,5 +11,6 @@ class Program
         Television television = new Television(soundSystem, screen);
         RemoteControl remoteControl = new RemoteControl(television, "main_remote_control");
         CommandLineInterface commandLineInterface = new CommandLineInterface(remoteControl);
+        commandLineInterface.UserInteraction();
     }
 }

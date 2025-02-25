@@ -34,8 +34,7 @@ public class TurnedOffState : ITelevisionState
 
     public ActionResult SwitchToMainMenuState(Television television)
     {
-        television.CurrentState = new MainMenuState();
-        return new ActionResult(Resources.ChangedToMainMenuState);
+        return new ActionResult(Resources.CannotSwitchToThisState);
     }
 
     public ActionResult SwitchToTurnedOffState(Television television)

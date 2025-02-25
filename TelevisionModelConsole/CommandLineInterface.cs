@@ -37,20 +37,20 @@ public class CommandLineInterface
     
     private void BuildOptions()
     {
-        _options += "1. Press power switch button";
-        _options += "2. Press next button";
-        _options += "3. Press previous button";
-        _options += "4. Change volume";
-        _options += "5. Change resolution";
-        _options += "6. Update software";
-        _options += "7. Main menu";
-        _options += "8. Television broadcast";
-        _options += "9. Streaming";
-        _options += "10. Screencast from external device";
-        _options += "exit";
+        _options += "1. Press power switch button\n";
+        _options += "2. Press next button\n";
+        _options += "3. Press previous button\n";
+        _options += "4. Change volume\n";
+        _options += "5. Change resolution\n";
+        _options += "6. Update software\n";
+        _options += "7. Main menu\n";
+        _options += "8. Television broadcast\n";
+        _options += "9. Streaming\n";
+        _options += "10. Screencast from external device\n";
+        _options += "exit\n";
     }
 
-    private void UserInteraction()
+    public void UserInteraction()
     {
         while (true)
         {
@@ -70,17 +70,17 @@ public class CommandLineInterface
 
     private void PressPowerSwitchButton()
     {
-        _remoteControl.PowerSwitch();
+        Console.WriteLine(_remoteControl.PowerSwitch());
     }
 
     private void PressNextButton()
     {
-        _remoteControl.NextChannel();
+        Console.WriteLine(_remoteControl.NextChannel());
     }
 
     private void PressPreviousButton()
     {
-        _remoteControl.PreviousChannel();
+        Console.WriteLine(_remoteControl.PreviousChannel());
     }
 
     private void EditVolume()

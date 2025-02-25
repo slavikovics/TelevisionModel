@@ -26,7 +26,7 @@ namespace TelevisionModel.Content
 
         public override string ToString()
         {
-            return $"Channel: {Name} {Environment.NewLine} LogoPath: {LogoPath}.";
+            return $"Channel: {Name} {Environment.NewLine}LogoPath: {BuildLogoUrl()}.";
         }
     }
 }
