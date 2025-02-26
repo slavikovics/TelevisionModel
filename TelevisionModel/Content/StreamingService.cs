@@ -1,4 +1,5 @@
 ﻿using TelevisionModel.Data;
+using TelevisionModel.Data;
 using TelevisionModel.Utils;
 
 namespace TelevisionModel.Content;
@@ -46,7 +47,7 @@ public class StreamingService : IContentProvider
     public ActionResult Greet()
     {
         ActionResult actionResult = new ActionResult(Resources.ChangedToStreamingState);
-        actionResult.MessageDetails.Add("Available series:");
+        actionResult.MessageDetails.Add(Resources.AvailableSeries);
         
         foreach (var series in Series)
         {
@@ -54,7 +55,7 @@ public class StreamingService : IContentProvider
         }
         
         actionResult.MessageDetails.Add("\n\n");
-        actionResult.MessageDetails.Add("Selected series:");
+        actionResult.MessageDetails.Add(Resources.SelectedSeries);
         actionResult.MessageDetails.Add(Series[SelectedIndex].ToString());
         
         return actionResult;

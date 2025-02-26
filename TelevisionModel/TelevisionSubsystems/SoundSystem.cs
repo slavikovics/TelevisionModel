@@ -1,4 +1,6 @@
-﻿namespace TelevisionModel
+﻿using TelevisionModel.Data;
+
+namespace TelevisionModel
 {
     public class SoundSystem
     {
@@ -12,7 +14,7 @@
 
         public SoundSystem(double power)
         {
-            if (power <= 0) throw new ArgumentException("Invalid power value");
+            if (power <= 0) throw new ArgumentException(Resources.InvalidPowerValue);
             
             Volume = 0;
             IsMuted = true;
@@ -23,7 +25,7 @@
         {
             if (newVolume is < 0 or > 100)
             {
-                throw new ArgumentException("Volume must be between 0 and 100.");
+                throw new ArgumentException(Resources.InvalidVolume);
             }
 
             IsMuted = !(newVolume > 0);

@@ -81,10 +81,10 @@
     <data name="SoundSystemDefaultPower" type="System.Int32, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
         <value>12</value>
     </data>
-    <data name="ScreenDefaultResX" type="System.Int32, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <data name="ScreenMaxResX" type="System.Int32, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
         <value>4096</value>
     </data>
-    <data name="ScreenDefaultResY" type="System.Int32, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <data name="ScreenMaxResY" type="System.Int32, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
         <value>2160</value>
     </data>
     <data name="ScreenDefaultMatrixType" xml:space="preserve">
@@ -101,5 +101,35 @@
     </data>
     <data name="FailedToLoadSeries" xml:space="preserve">
         <value>Failed to load television series.</value>
+    </data>
+    <data name="InvalidVolume" xml:space="preserve">
+        <value>Volume must be between 0 and 100.</value>
+    </data>
+    <data name="InvalidPowerValue" xml:space="preserve">
+        <value>Invalid power value</value>
+    </data>
+    <data name="InvalidSoftwareVersion" xml:space="preserve">
+        <value>Invalid version. Version can only contain numbers and dots.</value>
+    </data>
+    <data name="VolumeWasEdited" xml:space="preserve">
+        <value>The volume was edited successfully. Current volume level is:</value>
+    </data>
+    <data name="ResolutionWasChanged" xml:space="preserve">
+        <value>The resolution was changed to</value>
+    </data>
+    <data name="SoftwareVersionWasChanged" xml:space="preserve">
+        <value>The software version was changed to</value>
+    </data>
+    <data name="AvailableSeries" xml:space="preserve">
+        <value>Available series:</value>
+    </data>
+    <data name="SelectedSeries" xml:space="preserve">
+        <value>Selected series:</value>
+    </data>
+    <data name="AvailableChannels" xml:space="preserve">
+        <value>Available channels:</value>
+    </data>
+    <data name="SelectedChannel" xml:space="preserve">
+        <value>Selected channel:</value>
     </data>
 </root>

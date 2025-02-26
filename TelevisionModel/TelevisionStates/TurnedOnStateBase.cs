@@ -2,6 +2,7 @@ using TelevisionModel.Content;
 using TelevisionModel.Data;
 using TelevisionModel.Data;
 using TelevisionModel.Data;
+using TelevisionModel.Data;
 using TelevisionModel.Utils;
 
 namespace TelevisionModel.TelevisionStates;
@@ -43,7 +44,7 @@ public abstract class TurnedOnStateBase : ITelevisionState
             return new ActionResult(e.Message);
         }
         
-        return new ActionResult($"The volume was edited successfully. Current volume level is: {soundSystem.Volume}%");
+        return new ActionResult($"{Resources.VolumeWasEdited} {soundSystem.Volume}%");
     }
 
     public virtual ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY)
@@ -56,8 +57,9 @@ public abstract class TurnedOnStateBase : ITelevisionState
         {
             return new ActionResult(e.Message);
         }
-        
-        return new ActionResult($"The resolution was changed to {newResolutionX} X {newResolutionY}.");
+
+        var theResolutionWasChangedTo = Resources.ResolutionWasChanged;
+        return new ActionResult($"{theResolutionWasChangedTo} {newResolutionX} X {newResolutionY}.");
     }
 
     public virtual ActionResult UpdateSoftware(Software software, string newSoftwareVersion)
@@ -70,8 +72,9 @@ public abstract class TurnedOnStateBase : ITelevisionState
         {
             return new ActionResult(e.Message);
         }
-        
-        return new ActionResult($"The software version was changed to {newSoftwareVersion}.");
+
+        var theSoftwareVersionWasChangedTo = Resources.SoftwareVersionWasChanged;
+        return new ActionResult($"{theSoftwareVersionWasChangedTo} {newSoftwareVersion}.");
     }
 
     public virtual ActionResult SwitchToMainMenuState(Television television)

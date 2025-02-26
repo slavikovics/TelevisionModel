@@ -46,7 +46,7 @@ public class ChannelBroadcastingSystem : IContentProvider
     public ActionResult Greet()
     {
         ActionResult actionResult = new ActionResult(Resources.ChangedToTelevisionBroadcastingState);
-        actionResult.MessageDetails.Add("Available channels:");
+        actionResult.MessageDetails.Add(Resources.AvailableChannels);
         
         foreach (var channel in AvailableChannels)
         {
@@ -54,7 +54,7 @@ public class ChannelBroadcastingSystem : IContentProvider
         }
         
         actionResult.MessageDetails.Add("\n\n");
-        actionResult.MessageDetails.Add("Selected channel:");
+        actionResult.MessageDetails.Add(Resources.SelectedChannel);
         actionResult.MessageDetails.Add(AvailableChannels[SelectedChannelIndex].ToString());
         
         return actionResult;

@@ -5,30 +5,30 @@ namespace TelevisionModel.Content;
 
 public static class SignalTransmitter
 {
-    private static List<TelevisionChannel> _availableChannels = new List<TelevisionChannel>();
+    private static readonly List<TelevisionChannel> AvailableChannels = new List<TelevisionChannel>();
     
-    private static List<TelevisionSeries> _availableSeries = new List<TelevisionSeries>();
+    private static readonly List<TelevisionSeries> AvailableSeries = new List<TelevisionSeries>();
     
     private static void AddTelevisionChannel(string channelName, string? logoPath)
     {
         if (logoPath is null) return;
             
-        foreach (TelevisionChannel channel in _availableChannels)
+        foreach (TelevisionChannel channel in AvailableChannels)
         {
             if (channel.Name == channelName) throw new ArgumentException($"{Resources.ChannelWithTheSameNameAlreadyExistsErrorMessage} " +
                                                                          $"Name: {channelName}.");
         }
             
         TelevisionChannel televisionChannel = new TelevisionChannel(logoPath, channelName);
-        _availableChannels.Add(televisionChannel);
+        AvailableChannels.Add(televisionChannel);
     }
 
     private static void RemoveTelevisionChannel(string channelName)
     {
-        TelevisionChannel? channelToRemove = _availableChannels.Find(channel => channel.Name == channelName);
+        TelevisionChannel? channelToRemove = AvailableChannels.Find(channel => channel.Name == channelName);
         if (channelToRemove is null) throw new ArgumentException(Resources.TelevisionChannelDoesNotExistErrorMessage);
 
-        _availableChannels.Remove(channelToRemove);
+        AvailableChannels.Remove(channelToRemove);
     }
     
     public static List<TelevisionChannel> FindChannels()
@@ -41,7 +41,7 @@ public static class SignalTransmitter
             AddTelevisionChannel(property.Name, property.Value.GetString());
         }
         
-        return _availableChannels;
+        return AvailableChannels;
     }
 
     public static List<TelevisionSeries> FindSeries()
@@ -64,9 +64,9 @@ public static class SignalTransmitter
             
             if (url is null || name is null || summary is null || imageUrl is null) continue;
             
-            _availableSeries.Add(new TelevisionSeries(name, url, imageUrl, summary));
+            AvailableSeries.Add(new TelevisionSeries(name, url, imageUrl, summary));
         }
         
-        return _availableSeries;
+        return AvailableSeries;
     }
 }

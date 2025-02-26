@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using TelevisionModel.Data;
 
 namespace TelevisionModel
 {
@@ -18,7 +19,7 @@ namespace TelevisionModel
 
             if (!isMatch)
             {
-                throw new ArgumentException("Invalid version. Version can only contain numbers and dots.");
+                throw new ArgumentException(Resources.InvalidSoftwareVersion);
             }
             
             if (InstalledVersion == newVersion) throw new Exception("The latest version of software is already installed.");

@@ -60,6 +60,24 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available channels:.
+        /// </summary>
+        internal static string AvailableChannels {
+            get {
+                return ResourceManager.GetString("AvailableChannels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available series:.
+        /// </summary>
+        internal static string AvailableSeries {
+            get {
+                return ResourceManager.GetString("AvailableSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://jaruba.github.io/channel-logos/export/transparent-color/.
         /// </summary>
         internal static string BaseUrl {
@@ -213,11 +231,47 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid power value.
+        /// </summary>
+        internal static string InvalidPowerValue {
+            get {
+                return ResourceManager.GetString("InvalidPowerValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid version. Version can only contain numbers and dots..
+        /// </summary>
+        internal static string InvalidSoftwareVersion {
+            get {
+                return ResourceManager.GetString("InvalidSoftwareVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volume must be between 0 and 100..
+        /// </summary>
+        internal static string InvalidVolume {
+            get {
+                return ResourceManager.GetString("InvalidVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resolution must be between 0 and MaxResolution.
         /// </summary>
         internal static string ResolutionRestrictionsErrorMessage {
             get {
                 return ResourceManager.GetString("ResolutionRestrictionsErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The resolution was changed to.
+        /// </summary>
+        internal static string ResolutionWasChanged {
+            get {
+                return ResourceManager.GetString("ResolutionWasChanged", resourceCulture);
             }
         }
         
@@ -250,11 +304,21 @@ namespace TelevisionModel.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 90.
+        /// </summary>
+        internal static int ScreenDefaultWidth {
+            get {
+                object obj = ResourceManager.GetObject("ScreenDefaultWidth", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Int32 similar to 4096.
         /// </summary>
         internal static int ScreenMaxResX {
             get {
-                object obj = ResourceManager.GetObject("ScreenDefaultResX", resourceCulture);
+                object obj = ResourceManager.GetObject("ScreenMaxResX", resourceCulture);
                 return ((int)(obj));
             }
         }
@@ -264,18 +328,35 @@ namespace TelevisionModel.Data {
         /// </summary>
         internal static int ScreenMaxResY {
             get {
-                object obj = ResourceManager.GetObject("ScreenDefaultResY", resourceCulture);
+                object obj = ResourceManager.GetObject("ScreenMaxResY", resourceCulture);
                 return ((int)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Int32 similar to 90.
+        ///   Looks up a localized string similar to Selected channel:.
         /// </summary>
-        internal static int ScreenDefaultWidth {
+        internal static string SelectedChannel {
             get {
-                object obj = ResourceManager.GetObject("ScreenDefaultWidth", resourceCulture);
-                return ((int)(obj));
+                return ResourceManager.GetString("SelectedChannel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected series:.
+        /// </summary>
+        internal static string SelectedSeries {
+            get {
+                return ResourceManager.GetString("SelectedSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The software version was changed to.
+        /// </summary>
+        internal static string SoftwareVersionWasChanged {
+            get {
+                return ResourceManager.GetString("SoftwareVersionWasChanged", resourceCulture);
             }
         }
         
@@ -313,6 +394,15 @@ namespace TelevisionModel.Data {
         internal static string TelevisionToPairIsNullErrorMessage {
             get {
                 return ResourceManager.GetString("TelevisionToPairIsNullErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The volume was edited successfully. Current volume level is:.
+        /// </summary>
+        internal static string VolumeWasEdited {
+            get {
+                return ResourceManager.GetString("VolumeWasEdited", resourceCulture);
             }
         }
     }
