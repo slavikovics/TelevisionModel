@@ -1,6 +1,6 @@
 ﻿using TelevisionModel.Data;
 
-namespace TelevisionModel
+namespace TelevisionModel.TelevisionSubsystems
 {
     public class Screen
     {
@@ -12,11 +12,11 @@ namespace TelevisionModel
         
         private int MaxResolutionY { get; }
         
-        public string MatrixType { get; }
+        private string MatrixType { get; }
         
-        public double Height { get; }
+        private double Height { get; }
         
-        public double Width { get; }
+        private double Width { get; }
 
         public Screen(int maxResolutionX, int maxResolutionY, string matrixType, double height, double width)
         {
