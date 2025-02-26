@@ -4,13 +4,13 @@ namespace TelevisionModel
 {
     public class Screen
     {
-        private int ResolutionX { get; set; }
+        public int ResolutionX { get; set; }
         
-        private int ResolutionY { get; set; }
+        public int ResolutionY { get; set; }
         
-        public int MaxResolutionX { get; }
+        private int MaxResolutionX { get; }
         
-        public int MaxResolutionY { get; }
+        private int MaxResolutionY { get; }
         
         public string MatrixType { get; }
         

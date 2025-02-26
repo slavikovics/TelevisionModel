@@ -12,9 +12,9 @@ namespace TelevisionModel.Utils
         StreamingService streamingService)
     {
         private States State { get; set; } = state;
-        private int ResolutionX { get; set; } = screen.MaxResolutionX;
+        private int ResolutionX { get; set; } = screen.ResolutionX;
 
-        private int ResolutionY { get; set; } = screen.MaxResolutionY;
+        private int ResolutionY { get; set; } = screen.ResolutionY;
 
         private double CurrentVolume { get; set; } = soundSystem.Volume;
 
@@ -46,8 +46,8 @@ namespace TelevisionModel.Utils
             ChannelBroadcastingSystem channelBroadcastingSystem, StreamingService streamingService)
         {
             State = state;
-            ResolutionX = screen.MaxResolutionX;
-            ResolutionY = screen.MaxResolutionY;
+            ResolutionX = screen.ResolutionX;
+            ResolutionY = screen.ResolutionY;
             CurrentVolume = soundSystem.Volume;
             SoftwareVersion = software.InstalledVersion;
             SelectedChannelIndex = channelBroadcastingSystem.SelectedChannelIndex;
