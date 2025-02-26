@@ -31,10 +31,10 @@ public static class Saver
             soundSystem.EditVolume(specifications.CurrentVolume);
 
             Software software = new Software(specifications.SoftwareVersion);
-            ChannelBroadcastingSystem channelBroadcastingSystem = new ChannelBroadcastingSystem();
+            ChannelBroadcastingSystem channelBroadcastingSystem = new ChannelBroadcastingSystem(specifications.SelectedChannelIndex);
             StreamingService streamingService = new StreamingService(specifications.SelectedTelevisionSeriesIndex);
             
-            Television television = new Television(soundSystem, screen);
+            Television television = new Television(soundSystem, screen, software, channelBroadcastingSystem, streamingService, specifications.State);
 
             return television;
         }

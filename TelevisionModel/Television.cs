@@ -36,6 +36,7 @@ namespace TelevisionModel
             StreamingService = new StreamingService();
             Software = new Software();
             CurrentState = new TurnedOffState();
+            Specifications = new TechnicalSpecifications();
             UpdateTechnicalSpecifications();
         }
 
@@ -47,6 +48,9 @@ namespace TelevisionModel
             Software = software;
             State = state;
             StreamingService = streamingService;
+            CurrentChannelBroadcastingSystem = channelBroadcastingSystem;
+            StreamingService = streamingService;
+            Specifications = new TechnicalSpecifications();
             UpdateTechnicalSpecifications();
             ReloadState(state);
         }
@@ -57,15 +61,19 @@ namespace TelevisionModel
             {
                 case States.MainMenu: CurrentState = new MainMenuState(); 
                     break;
-                case States.TelevisionBroadcasting: CurrentState = new TelevisionBroadcastingState(); 
+                case States.TelevisionBroadcasting: CurrentState = new TelevisionBroadcastingState();
+                    ContentProvider = CurrentChannelBroadcastingSystem;
                     break;
                 case States.Streaming: CurrentState = new StreamingState();
+                    ContentProvider = StreamingService;
                     break;
                 case States.ExternalDeviceScreencast: CurrentState = new ExternalDeviceScreencastState();
                     break;
                 default: CurrentState = new TurnedOffState();
                     break;
             }
+
+            UpdateTechnicalSpecifications();
         }
 
         public void RegisterRemoteControl(RemoteControl remoteControl)

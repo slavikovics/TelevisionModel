@@ -3,27 +3,37 @@ using TelevisionModel.Content;
 
 namespace TelevisionModel.Utils
 {
-    public class TechnicalSpecifications(
-        Screen screen,
-        SoundSystem soundSystem,
-        Software software,
-        States state,
-        ChannelBroadcastingSystem channelBroadcastingSystem,
-        StreamingService streamingService)
+    public class TechnicalSpecifications
     {
-        public States State { get; set; } = state;
-        public int ResolutionX { get; set; } = screen.ResolutionX;
+        public States State { get; set; }
+        public int ResolutionX { get; set; }
 
-        public int ResolutionY { get; set; } = screen.ResolutionY;
+        public int ResolutionY { get; set; } 
 
-        public double CurrentVolume { get; set; } = soundSystem.Volume;
+        public double CurrentVolume { get; set; } 
 
-        public string SoftwareVersion { get; set; } = software.InstalledVersion;
+        public string SoftwareVersion { get; set; } 
 
-        public int SelectedTelevisionSeriesIndex { get; set; } = streamingService.SelectedIndex;
+        public int SelectedTelevisionSeriesIndex { get; set; }
 
-        public int SelectedChannelIndex { get; set; } = channelBroadcastingSystem.SelectedChannelIndex;
+        public int SelectedChannelIndex { get; set; }
 
+        public TechnicalSpecifications(States state, Screen screen, SoundSystem soundSystem, Software software,
+            ChannelBroadcastingSystem channelBroadcastingSystem, StreamingService streamingService)
+        {
+            State = state;
+            ResolutionX = screen.ResolutionX;
+            ResolutionY = screen.ResolutionY;
+            CurrentVolume = soundSystem.Volume;
+            SoftwareVersion = software.InstalledVersion;
+            SelectedChannelIndex = channelBroadcastingSystem.SelectedChannelIndex;
+            SelectedTelevisionSeriesIndex = streamingService.SelectedIndex;
+        }
+
+        public TechnicalSpecifications()
+        {
+        }
+        
         public override string ToString()
         {
             string result = "System info:\n";
