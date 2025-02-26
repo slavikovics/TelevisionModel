@@ -18,4 +18,10 @@ public class ActionResult
         foreach (string messageDetail in MessageDetails) result += "\n" + messageDetail;
         return result;
     }
+
+    public ActionResult AddSpecifications(TechnicalSpecifications technicalSpecifications)
+    {
+        MessageDetails.Add(technicalSpecifications.ToString());
+        return this;
+    }
 }

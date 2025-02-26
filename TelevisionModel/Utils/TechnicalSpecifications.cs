@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using TelevisionModel.Content;
 
 namespace TelevisionModel.Utils
 {
@@ -7,25 +8,50 @@ namespace TelevisionModel.Utils
         SoundSystem soundSystem,
         Software software,
         States state,
-        int selectedChannel,
-        int selectedStreaming)
+        ChannelBroadcastingSystem channelBroadcastingSystem,
+        StreamingService streamingService)
     {
-        public States State { get; } = state;
-        public int ResolutionX { get; } = screen.MaxResolutionX;
+        private States State { get; set; } = state;
+        private int ResolutionX { get; set; } = screen.MaxResolutionX;
 
-        public int ResolutionY { get; } = screen.MaxResolutionY;
+        private int ResolutionY { get; set; } = screen.MaxResolutionY;
 
-        public double CurrentVolume { get; } = soundSystem.Volume;
+        private double CurrentVolume { get; set; } = soundSystem.Volume;
 
-        public string SoftwareVersion { get; } = software.InstalledVersion;
+        private string SoftwareVersion { get; set; } = software.InstalledVersion;
 
-        public int SelectedTelevisionSeriesIndex { get; } = selectedStreaming;
+        private int SelectedTelevisionSeriesIndex { get; set; } = streamingService.SelectedIndex;
 
-        public double SelectedChannelIndex { get; } = selectedChannel;
+        private double SelectedChannelIndex { get; set; } = channelBroadcastingSystem.SelectedChannelIndex;
 
         public override string ToString()
         {
+            string result = "System info:\n";
+            result += $"State: {State}\n";
+            result += $"ResolutionX: {ResolutionX}\n";
+            result += $"ResolutionY: {ResolutionY}\n";
+            result += $"Current volume: {CurrentVolume}\n";
+            result += $"Software version: {SoftwareVersion}\n";
+            result += $"Selected streaming: {SelectedTelevisionSeriesIndex}\n";
+            result += $"Selected channel: {SelectedChannelIndex}\n";
+            return result;
+        }
+
+        public string ToJson()
+        {
             return JsonSerializer.Serialize(this);
+        }
+
+        public void Update(States state, Screen screen, SoundSystem soundSystem, Software software,
+            ChannelBroadcastingSystem channelBroadcastingSystem, StreamingService streamingService)
+        {
+            State = state;
+            ResolutionX = screen.MaxResolutionX;
+            ResolutionY = screen.MaxResolutionY;
+            CurrentVolume = soundSystem.Volume;
+            SoftwareVersion = software.InstalledVersion;
+            SelectedChannelIndex = channelBroadcastingSystem.SelectedChannelIndex;
+            SelectedTelevisionSeriesIndex = streamingService.SelectedIndex;
         }
     }
 }

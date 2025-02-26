@@ -16,6 +16,7 @@ namespace TelevisionModelTests
             }
         }
 
+        [TestMethod]
         public void FindingSeriesTest()
         {
             List<TelevisionSeries> tvSeries = SignalTransmitter.FindSeries();

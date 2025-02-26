@@ -22,6 +22,8 @@ namespace TelevisionModel
         public IContentProvider ContentProvider { get; set; }
         
         public States State { get; set; }
+        
+        public TechnicalSpecifications Specifications { get; private set; }
 
         public Television(SoundSystem soundSystem, Screen screen)
         {
@@ -32,6 +34,7 @@ namespace TelevisionModel
             StreamingService = new StreamingService();
             Software = new Software();
             CurrentState = new TurnedOffState();
+            Specifications = new TechnicalSpecifications(Screen, SoundSystem, Software, State, CurrentChannelBroadcastingSystem, StreamingService);
         }
 
         public void RegisterRemoteControl(RemoteControl remoteControl)
@@ -73,12 +76,14 @@ namespace TelevisionModel
         {
             CurrentState = new MainMenuState();
             State = States.MainMenu;
-            return new ActionResult(Resources.ChangedToMainMenuState);
+            UpdateTechnicalSpecifications();
+            return new ActionResult(Resources.ChangedToMainMenuState).AddSpecifications(Specifications);
         }
 
         private ActionResult TurnOff()
         {
-            return CurrentState.SwitchToTurnedOffState(this);
+            UpdateTechnicalSpecifications();
+            return CurrentState.SwitchToTurnedOffState(this).AddSpecifications(Specifications);
         }
 
         private ActionResult PowerSwitchPushed()
@@ -89,54 +94,62 @@ namespace TelevisionModel
 
         private ActionResult SwitchToNextChannel()
         {
-            return CurrentState.SwitchToNextChannel(ContentProvider);
+            UpdateTechnicalSpecifications();
+            return CurrentState.SwitchToNextChannel(ContentProvider).AddSpecifications(Specifications);
         }
 
         private ActionResult SwitchToPreviousChannel()
         {
-            return CurrentState.SwitchToPreviousChannel(ContentProvider);
+            UpdateTechnicalSpecifications();
+            return CurrentState.SwitchToPreviousChannel(ContentProvider).AddSpecifications(Specifications);
         }
 
         private ActionResult EditVolume(double newVolume)
         {
-            return CurrentState.EditVolume(SoundSystem, newVolume);
+            UpdateTechnicalSpecifications();
+            return CurrentState.EditVolume(SoundSystem, newVolume).AddSpecifications(Specifications);
         }
         
         private ActionResult ChangeResolution(int newResolutionX, int newResolutionY)
         {
-            return CurrentState.ChangeResolution(Screen, newResolutionX, newResolutionY);
+            UpdateTechnicalSpecifications();
+            return CurrentState.ChangeResolution(Screen, newResolutionX, newResolutionY).AddSpecifications(Specifications);
         }
         
         private ActionResult UpdateSoftware(string newSoftwareVersion)
         {
-            return CurrentState.UpdateSoftware(Software, newSoftwareVersion);
+            UpdateTechnicalSpecifications();
+            return CurrentState.UpdateSoftware(Software, newSoftwareVersion).AddSpecifications(Specifications);
         }
         
         private ActionResult SwitchToMainMenuState()
         {
-            return CurrentState.SwitchToMainMenuState(this);
+            UpdateTechnicalSpecifications();
+            return CurrentState.SwitchToMainMenuState(this).AddSpecifications(Specifications);
         }
         
         private ActionResult SwitchToTelevisionBroadcastingState()
         {
-            return CurrentState.SwitchToTelevisionBroadcastingState(this);
+            UpdateTechnicalSpecifications();
+            return CurrentState.SwitchToTelevisionBroadcastingState(this).AddSpecifications(Specifications);
         }
         
         private ActionResult SwitchToStreamingState()
         {
-            return CurrentState.SwitchToStreamingState(this);
+            UpdateTechnicalSpecifications();
+            return CurrentState.SwitchToStreamingState(this).AddSpecifications(Specifications);
         }
         
         private ActionResult SwitchToExternalDeviceScreencastState(Device externalDevice)
         {
-            return CurrentState.SwitchToExternalDeviceScreencastState(this, externalDevice);
+            UpdateTechnicalSpecifications();
+            return CurrentState.SwitchToExternalDeviceScreencastState(this, externalDevice).AddSpecifications(Specifications);
         }
 
-        public TechnicalSpecifications BuildTechnicalSpecifications()
+        public string UpdateTechnicalSpecifications()
         {
-            TechnicalSpecifications technicalSpecifications = new TechnicalSpecifications(Screen, SoundSystem, Software, State, 
-                CurrentChannelBroadcastingSystem.SelectedChannelIndex, StreamingService.SelectedIndex);
-            return technicalSpecifications;
+            Specifications.Update(State, Screen, SoundSystem, Software, CurrentChannelBroadcastingSystem, StreamingService);
+            return Specifications.ToString();
         }
     }
 }
