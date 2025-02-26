@@ -33,12 +33,12 @@ namespace TelevisionModel
         {
             if (newResolutionX > MaxResolutionX || newResolutionY > MaxResolutionY)
             {
-                throw new ArgumentException(Resources.ResolutionRestrictionsErrorMessage);
+                throw new ArgumentException(Resources.ResolutionRestrictionsErrorMessage + $" (MaxResolutionX: {MaxResolutionX})");
             }
 
             if (newResolutionX < 0 || newResolutionY < 0)
             {
-                throw new ArgumentException(Resources.ResolutionRestrictionsErrorMessage);
+                throw new ArgumentException(Resources.ResolutionRestrictionsErrorMessage + $" (MaxResolutionY: {MaxResolutionY})");
             }
             
             ResolutionX = newResolutionX;

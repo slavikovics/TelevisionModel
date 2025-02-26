@@ -57,6 +57,8 @@ namespace TelevisionModel
 
         private void ReloadState(States state)
         {
+            State = state;
+            
             switch (state)
             {
                 case States.MainMenu: CurrentState = new MainMenuState(); 

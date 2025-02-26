@@ -109,7 +109,7 @@ public abstract class TurnedOnStateBase : ITelevisionState
 
     public virtual ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice)
     {
-        television.CurrentState = new TurnedOffState();
+        television.CurrentState = new ExternalDeviceScreencastState();
         television.State = States.ExternalDeviceScreencast;
         return new ActionResult(Resources.ChangedToExternalDeviceScreencastState);
     }
