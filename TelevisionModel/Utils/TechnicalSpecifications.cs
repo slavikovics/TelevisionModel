@@ -11,18 +11,18 @@ namespace TelevisionModel.Utils
         ChannelBroadcastingSystem channelBroadcastingSystem,
         StreamingService streamingService)
     {
-        private States State { get; set; } = state;
-        private int ResolutionX { get; set; } = screen.ResolutionX;
+        public States State { get; set; } = state;
+        public int ResolutionX { get; set; } = screen.ResolutionX;
 
-        private int ResolutionY { get; set; } = screen.ResolutionY;
+        public int ResolutionY { get; set; } = screen.ResolutionY;
 
-        private double CurrentVolume { get; set; } = soundSystem.Volume;
+        public double CurrentVolume { get; set; } = soundSystem.Volume;
 
-        private string SoftwareVersion { get; set; } = software.InstalledVersion;
+        public string SoftwareVersion { get; set; } = software.InstalledVersion;
 
-        private int SelectedTelevisionSeriesIndex { get; set; } = streamingService.SelectedIndex;
+        public int SelectedTelevisionSeriesIndex { get; set; } = streamingService.SelectedIndex;
 
-        private double SelectedChannelIndex { get; set; } = channelBroadcastingSystem.SelectedChannelIndex;
+        public int SelectedChannelIndex { get; set; } = channelBroadcastingSystem.SelectedChannelIndex;
 
         public override string ToString()
         {

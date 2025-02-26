@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using TelevisionModel.Content;
 using TelevisionModel.Data;
 using TelevisionModel.Data;
 using TelevisionModel.Data;
@@ -9,7 +10,8 @@ public static class Saver
 {
     public static void SaveToFile(Television television)
     {
-        File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Resources.SaveFileName), JsonSerializer.Serialize(television));
+        string savePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Resources.SaveFileName);
+        File.WriteAllText(savePath, television.Specifications.ToJson());
     }
 
     public static Television TryLoadFromFile()
@@ -18,13 +20,29 @@ public static class Saver
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Resources.SaveFileName);
             string text = File.ReadAllText(path);
-            return JsonSerializer.Deserialize<Television>(text) ?? throw new JsonException();
+            TechnicalSpecifications specifications = JsonSerializer.Deserialize<TechnicalSpecifications>(text) 
+                                                     ?? throw new JsonException();
+            
+            Screen screen = new Screen(Resources.ScreenMaxResX, Resources.ScreenMaxResY, Resources.ScreenDefaultMatrixType, 
+                Resources.ScreenDefaultHeight, Resources.ScreenDefaultWidth);
+            screen.ChangeResolution(specifications.ResolutionX, specifications.ResolutionY);
+            
+            SoundSystem soundSystem = new SoundSystem(Resources.SoundSystemDefaultPower);
+            soundSystem.EditVolume(specifications.CurrentVolume);
+
+            Software software = new Software(specifications.SoftwareVersion);
+            ChannelBroadcastingSystem channelBroadcastingSystem = new ChannelBroadcastingSystem();
+            StreamingService streamingService = new StreamingService(specifications.SelectedTelevisionSeriesIndex);
+            
+            Television television = new Television(soundSystem, screen);
+
+            return television;
         }
         catch (Exception e)
         {
             SoundSystem soundSystem = new SoundSystem(Resources.SoundSystemDefaultPower);
             
-            Screen screen = new Screen(Resources.ScreenDefaultResX, Resources.ScreenDefaultResY, Resources.ScreenDefaultMatrixType, 
+            Screen screen = new Screen(Resources.ScreenMaxResX, Resources.ScreenMaxResY, Resources.ScreenDefaultMatrixType, 
                 Resources.ScreenDefaultHeight, Resources.ScreenDefaultWidth);
             
             return new Television(soundSystem, screen);

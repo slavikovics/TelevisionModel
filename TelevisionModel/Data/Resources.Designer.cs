@@ -252,7 +252,7 @@ namespace TelevisionModel.Data {
         /// <summary>
         ///   Looks up a localized resource of type System.Int32 similar to 4096.
         /// </summary>
-        internal static int ScreenDefaultResX {
+        internal static int ScreenMaxResX {
             get {
                 object obj = ResourceManager.GetObject("ScreenDefaultResX", resourceCulture);
                 return ((int)(obj));
@@ -262,7 +262,7 @@ namespace TelevisionModel.Data {
         /// <summary>
         ///   Looks up a localized resource of type System.Int32 similar to 2160.
         /// </summary>
-        internal static int ScreenDefaultResY {
+        internal static int ScreenMaxResY {
             get {
                 object obj = ResourceManager.GetObject("ScreenDefaultResY", resourceCulture);
                 return ((int)(obj));

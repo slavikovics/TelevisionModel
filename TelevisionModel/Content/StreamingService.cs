@@ -24,6 +24,11 @@ public class StreamingService : IContentProvider
         }
     }
 
+    public StreamingService(int selectedIndex) : this()
+    {
+        SelectedIndex = selectedIndex;
+    }
+
     public ActionResult SwitchToNext()
     {
         if (Series.Count == 0) return new ActionResult(Resources.FailedToLoadSeries);

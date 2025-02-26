@@ -23,6 +23,11 @@ public class ChannelBroadcastingSystem : IContentProvider
             throw new FormatException(Resources.FailedToLoadChannels);
         }
     }
+
+    public ChannelBroadcastingSystem(int selectedChannelIndex) : this()
+    {
+        SelectedChannelIndex = selectedChannelIndex;
+    }
     
     public ActionResult SwitchToNext()
     {
