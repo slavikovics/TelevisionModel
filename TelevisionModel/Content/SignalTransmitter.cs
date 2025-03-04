@@ -13,12 +13,6 @@ public static class SignalTransmitter
     {
         if (logoPath is null) return;
             
-        foreach (TelevisionChannel channel in AvailableChannels)
-        {
-            if (channel.Name == channelName) throw new ArgumentException($"{Resources.ChannelWithTheSameNameAlreadyExistsErrorMessage} " +
-                                                                         $"Name: {channelName}.");
-        }
-            
         TelevisionChannel televisionChannel = new TelevisionChannel(logoPath, channelName);
         AvailableChannels.Add(televisionChannel);
     }

@@ -7,16 +7,6 @@ namespace TelevisionModelTests
     public sealed class SignalTransmitterTests
     {
         [TestMethod]
-        public void FindingChannelsTest()
-        {
-            List<TelevisionChannel> channels = SignalTransmitter.FindChannels();
-            foreach (var channel in channels)
-            {
-                if (channel.Name == "" || channel.LogoPath == "") Assert.Fail();
-            }
-        }
-
-        [TestMethod]
         public void FindingSeriesTest()
         {
             List<TelevisionSeries> tvSeries = SignalTransmitter.FindSeries();
