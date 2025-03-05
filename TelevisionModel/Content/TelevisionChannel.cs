@@ -9,9 +9,9 @@ namespace TelevisionModel.Content
 {
     public class TelevisionChannel
     {
-        public string LogoPath { get; }
-        
         public string Name { get; }
+        
+        private string LogoPath { get; }
 
         public TelevisionChannel(string logoPath, string name)
         {
@@ -19,14 +19,14 @@ namespace TelevisionModel.Content
             Name = name;
         }
 
-        public string BuildLogoUrl()
-        {
-            return Resources.BaseUrl + LogoPath;
-        }
-
         public override string ToString()
         {
             return $"Channel: {Name} {Environment.NewLine}LogoPath: {BuildLogoUrl()}.";
+        }
+        
+        public string BuildLogoUrl()
+        {
+            return Resources.BaseUrl + LogoPath;
         }
     }
 }

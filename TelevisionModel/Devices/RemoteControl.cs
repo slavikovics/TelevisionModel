@@ -1,4 +1,5 @@
 ﻿using TelevisionModel.Data;
+using TelevisionModel.Devices;
 using TelevisionModel.Utils;
 
 namespace TelevisionModel

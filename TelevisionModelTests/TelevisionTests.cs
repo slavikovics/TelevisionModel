@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using TelevisionModel;
+using TelevisionModel.Devices;
 using TelevisionModel.TelevisionSubsystems;
 using TelevisionModel.Utils;
 
