@@ -561,7 +561,7 @@ public Software(string installedVersion = "0.0")
 public void UpdateSoftware(string newVersion)
 ```
 
-### 10. Software
+### 11. Sound system
 
 - Свойство для хранения значения текущей громкости:
 ```c#
@@ -588,39 +588,244 @@ public SoundSystem(double power)
 public void EditVolume(double newVolume)
 ```
 
+## Другие сущности
 
+### 12. ActionResult
 
+Обёртка для возвращаемых значений.
 
+- Свойство для списка деталей сообщения:
+```c#
+public List<string> MessageDetails { get; private set; }
+```
 
+- Свойство для описания сообщения:
+```c#
+private string MessageDescription { get; set; } 
+```
 
+- Метод для перевода объекта в строку:
+```c#
+public override string ToString();
+```
 
+- Метод для добавления технических спецификаций к системе:
+```c#
+public ActionResult AddSpecifications(TechnicalSpecifications technicalSpecifications)
+```
 
+### 13. Saver
 
+Статический класс для сохранения и загрузки состояния системы.
 
+- Метод для сохранения технических спецификаций телевизора в файл:
+```c#
+public static void SaveToFile(Television television)
+```
 
+- Метод для создания телевизора на основе сохранённых данных:
+```c#
+public static Television TryLoadFromFile()
+```
 
+### 13. TechnicalSpecifications
 
+Класс для хранения технических характеристик системы.
 
+- Свойство для сохранения состояния:
+```c#
+public States State { get; set; }
+```
 
+- Свойство для сохранения разрешения по горизонтали:
+```c#
+public int ResolutionX { get; set; }
+```
 
+- Свойство для сохранения разрешения по вертикали:
+```c#
+public int ResolutionY { get; set; }
+```
 
+- Свойство для сохранения громкости:
+```c#
+public double CurrentVolume { get; set; }
+```
 
+- Свойство для сохранения версии программного обеспечения:
+```c#
+public string SoftwareVersion { get; set; } 
+```
 
+- Свойство для сохранения индекса выбранного телеканала:
+```c#
+public int SelectedChannelIndex { get; set; }
+```
 
+- Свойство для сохранения индекса выбранного сериала:
+```c#
+public int SelectedTelevisionSeriesIndex { get; set; } 
+```
 
+- Конструкторы для инициализации технических характеристик:
+```c#
+public TechnicalSpecifications()
 
+public TechnicalSpecifications(States state, Screen screen, SoundSystem soundSystem, Software software,
+            ChannelBroadcastingSystem channelBroadcastingSystem, StreamingService streamingService)
+```
 
+- Метод для перевода технических характеристик в строку:
+```c#
+public override string ToString() 
+```
 
+- Метод для перевода технических характеристик в строку в формате json:
+```c#
+public string ToJson() 
+```
 
+- Метод для обновления технических характеристик:
+```c#
+public void Update(States state, Screen screen, SoundSystem soundSystem, Software software,
+     ChannelBroadcastingSystem channelBroadcastingSystem, StreamingService streamingService)
+```
 
+## 14. Television
 
+Главный класс в модели, который управляет всеми подсистемами и реагирует на взаимодействие пользователя с пультом.
 
+- Свойство для подсистемы просмотра телеканалов:
+```c#
+public ChannelBroadcastingSystem CurrentChannelBroadcastingSystem { get; }
+```
 
+- Свойство для стримингового сервиса:
+```c#
+public StreamingService StreamingService { get; }
+```
 
+- Свойство для текущего состояния системы:
+```c#
+public ITelevisionState CurrentState { get; set; }
+```
 
+- Свойство для текущего источника содержимого:
+```c#
+public IContentProvider ContentProvider { get; set; }
+```
 
+- Свойство для сохранения состояния в технических характеристиках:
+```c#
+public States State { get; set; }
+```
 
+- Свойство для технических характеристик:
+```c#
+public TechnicalSpecifications Specifications { get; private set; }
+```
 
+- Свойство для звуковой подсистемы:
+```c#
+private SoundSystem SoundSystem { get; }
+```
 
+- Свойство для подсистемы экрана:
+```c#
+private Screen Screen { get; }
+```
+
+- Свойство для подсистемы программного обеспечения:
+```c#
+private Software Software { get; }
+```
+
+- Конструкторы для телевизора:
+```c#
+public Television(SoundSystem soundSystem, Screen screen)
+    
+public Television(SoundSystem soundSystem, Screen screen, Software software, ChannelBroadcastingSystem channelBroadcastingSystem, 
+            StreamingService streamingService, States state)
+```
+
+- Метод для подсистемы для подписывания на события пульта:
+```c#
+public void RegisterRemoteControl(RemoteControl remoteControl)
+```
+
+- Метод для подсистемы для отписывания на события пульта:
+```c#
+public void UnregisterRemoteControl(RemoteControl remoteControl)
+```
+
+- Метод для загрузки сохранённого состояния системы:
+```c#
+private void ReloadState(States state)
+```
+
+- Метод для выключения:
+```c#
+private ActionResult TurnOff()
+```
+
+- Метод для включения:
+```c#
+private ActionResult TurnOn()
+```
+
+- Метод для обработки нажатия кнопки питания на пульте:
+```c#
+private ActionResult PowerSwitchPushed()
+```
+
+- Метод для переключения на следующий канал (сериал):
+```c#
+private ActionResult SwitchToNextChannel()
+```
+
+- Метод для переключения на предыдущий канал (сериал):
+```c#
+private ActionResult SwitchToPreviousChannel()
+```
+
+- Метод для изменения громкости системы:
+```c#
+private ActionResult EditVolume(double newVolume)
+```
+
+- Метод для изменения разрешения:
+```c#
+private ActionResult ChangeResolution(int newResolutionX, int newResolutionY)
+```
+
+- Метод для обновления программного обеспечения:
+```c#
+private ActionResult UpdateSoftware(string newSoftwareVersion)
+```
+
+- Метод для перехода в главное меню:
+```c#
+private ActionResult SwitchToMainMenuState()
+```
+
+- Метод для перехода в состояние просмотра телевидения:
+```c#
+private ActionResult SwitchToTelevisionBroadcastingState()
+```
+
+- Метод для перехода в состояние просмотра стриминга:
+```c#
+private ActionResult SwitchToStreamingState()
+```
+
+- Метод для перехода в состояние трансляции с внешнего устройства:
+```c#
+private ActionResult SwitchToExternalDeviceScreencastState(Device externalDevice)
+```
+
+- Метод для обновления технических спецификаций системы:
+```c#
+private string UpdateTechnicalSpecifications()
+```
 
 

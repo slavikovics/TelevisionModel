@@ -7,6 +7,7 @@ namespace TelevisionModel.Utils
     public class TechnicalSpecifications
     {
         public States State { get; set; }
+        
         public int ResolutionX { get; set; }
 
         public int ResolutionY { get; set; } 

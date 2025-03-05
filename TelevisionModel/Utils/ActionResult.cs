@@ -2,9 +2,9 @@
 
 public class ActionResult
 {
-    public string MessageDescription { get; private set; }  
-    
     public List<string> MessageDetails { get; private set; }
+    
+    private string MessageDescription { get; set; }  
 
     public ActionResult(string messageDescription)
     {

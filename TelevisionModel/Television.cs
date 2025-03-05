@@ -10,12 +10,6 @@ namespace TelevisionModel
 {
     public class Television
     {
-        private SoundSystem SoundSystem { get; }
-        
-        private Screen Screen { get; }
-        
-        private Software Software { get; }
-        
         public ChannelBroadcastingSystem CurrentChannelBroadcastingSystem { get; }
         
         public StreamingService StreamingService { get; }
@@ -27,6 +21,12 @@ namespace TelevisionModel
         public States State { get; set; }
         
         public TechnicalSpecifications Specifications { get; private set; }
+        
+        private SoundSystem SoundSystem { get; }
+        
+        private Screen Screen { get; }
+        
+        private Software Software { get; }
 
         public Television(SoundSystem soundSystem, Screen screen)
         {
@@ -55,29 +55,6 @@ namespace TelevisionModel
             Specifications = new TechnicalSpecifications();
             UpdateTechnicalSpecifications();
             ReloadState(state);
-        }
-
-        private void ReloadState(States state)
-        {
-            State = state;
-            
-            switch (state)
-            {
-                case States.MainMenu: CurrentState = new MainMenuState(); 
-                    break;
-                case States.TelevisionBroadcasting: CurrentState = new TelevisionBroadcastingState();
-                    ContentProvider = CurrentChannelBroadcastingSystem;
-                    break;
-                case States.Streaming: CurrentState = new StreamingState();
-                    ContentProvider = StreamingService;
-                    break;
-                case States.ExternalDeviceScreencast: CurrentState = new ExternalDeviceScreencastState();
-                    break;
-                default: CurrentState = new TurnedOffState();
-                    break;
-            }
-
-            UpdateTechnicalSpecifications();
         }
 
         public void RegisterRemoteControl(RemoteControl remoteControl)
@@ -113,6 +90,29 @@ namespace TelevisionModel
             {
                 throw new Exception($"{Resources.FaildToUnregisterRemoteControlErrorMessage} Name: {remoteControl.Name}", e);
             }
+        }
+        
+        private void ReloadState(States state)
+        {
+            State = state;
+            
+            switch (state)
+            {
+                case States.MainMenu: CurrentState = new MainMenuState(); 
+                    break;
+                case States.TelevisionBroadcasting: CurrentState = new TelevisionBroadcastingState();
+                    ContentProvider = CurrentChannelBroadcastingSystem;
+                    break;
+                case States.Streaming: CurrentState = new StreamingState();
+                    ContentProvider = StreamingService;
+                    break;
+                case States.ExternalDeviceScreencast: CurrentState = new ExternalDeviceScreencastState();
+                    break;
+                default: CurrentState = new TurnedOffState();
+                    break;
+            }
+
+            UpdateTechnicalSpecifications();
         }
 
         private ActionResult TurnOn()
