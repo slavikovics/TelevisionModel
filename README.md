@@ -103,52 +103,54 @@
 
 Описывает методы, которые должны реализовывать классы состояний системы.
 
-- Метод для переключения на следующий канал предоставителя контента.
+- Метод для переключения на следующий канал предоставителя контента:
 ```c#
 public ActionResult SwitchToNextChannel(IContentProvider contentProvider);
 ```
 
-- Метод для переключения на предыдущий канал предоставителя контента.
+
+- Метод для переключения на предыдущий канал предоставителя контента:
 ```c#
 public ActionResult SwitchToPreviousChannel(IContentProvider contentProvider);
 ```
 
-- Метод для изменения громкости.
+
+- Метод для изменения громкости:
 ```c#
 public ActionResult EditVolume(SoundSystem soundSystem, double newVolume);
 ```
 
-- Метод для изменения разрешения экрана.
+- Метод для изменения разрешения экрана:
 ```c#
 public ActionResult ChangeResolution(Screen screen, int newResolutionX, int newResolutionY);
 ```
 
-- Метод для обновления программного обеспечения.
+- Метод для обновления программного обеспечения:
 ```c#
 public ActionResult UpdateSoftware(Software software, string newSoftwareVersion);
 ```
 
-- Метод для переключения в состояние главного меню.
+- Метод для переключения в состояние главного меню:
 ```c#
 public ActionResult SwitchToMainMenuState(Television television);
 ```
 
-- Метод для выключения.
+- Метод для выключения:
 ```c#
 public ActionResult SwitchToTurnedOffState(Television television);
 ```
 
-- Метод для переключения в состояние просмотра телеканалов.
+- Метод для переключения в состояние просмотра телеканалов:
 ```c#
 public ActionResult SwitchToTelevisionBroadcastingState(Television television);
 ```
 
-- Метод для переключения в состояние просмотра стримингового сервиса.
+- Метод для переключения в состояние просмотра стримингового сервиса:
 ```c#
 public ActionResult SwitchToStreamingState(Television television);
 ```
 
-- Метод для переключения в состояние трансляции экрана с внешнего устройства.
+- Метод для переключения в состояние трансляции экрана с внешнего устройства:
 ```c#
 public ActionResult SwitchToExternalDeviceScreencastState(Television television, Device externalDevice);
 ```
@@ -167,12 +169,12 @@ public ActionResult SwitchToExternalDeviceScreencastState(Television television,
 
 Описывает взаимодействие телевизора с системой предоставления контента.
 
-- Метод для переключения на следующее содержимое.
+- Метод для переключения на следующее содержимое:
 ```c#
 public ActionResult SwitchToNext();
 ```
 
-- Метод для переключения на предыдущее содержимое.
+- Метод для переключения на предыдущее содержимое:
 ```c#
 public ActionResult SwitchToPrevious();
 ```
@@ -185,37 +187,37 @@ public ActionResult SwitchToPrevious();
 
 Класс для просмотра телевидения
 
-- Свойство для хранения индекса выбранного канала.
+- Свойство для хранения индекса выбранного канала:
 ```c#
 public int SelectedChannelIndex { get; private set; }
 ```
 
-- Список доступных каналов.
+- Список доступных каналов:
 ```c#
 private List<TelevisionChannel> AvailableChannels { get; }
 ```
 
-- Конструктор для инициализации без параметров.
+- Конструктор для инициализации без параметров:
 ```c#
 public ChannelBroadcastingSystem()
 ```
 
-- Конструктор с заранее известным индексом выбранного канала.
+- Конструктор с заранее известным индексом выбранного канала:
 ```c#
 public ChannelBroadcastingSystem(int selectedChannelIndex) : this()
 ```
 
-- Метод для переключения на следующий канал.
+- Метод для переключения на следующий канал:
 ```c#
 public ActionResult SwitchToNext()
 ```
 
-- Метод для переключения на предыдущий канал.
+- Метод для переключения на предыдущий канал:
 ```c#
 public ActionResult SwitchToPrevious()
 ```
 
-- Метод для генерации первичной информации для пользователя про список доступных каналов.
+- Метод для генерации первичной информации для пользователя про список доступных каналов:
 ```c#
 public ActionResult Greet()
 ```
@@ -224,37 +226,37 @@ public ActionResult Greet()
 
 Класс для взаимодействия со стриминговым сервисом.
 
-- Свойство для хранения индекса выбранного сериала.
+- Свойство для хранения индекса выбранного сериала:
 ```c#
 public int SelectedIndex { get; private set; }
 ```
 
-- Список доступных сериалов.
+- Список доступных сериалов:
 ```c#
 private List<TelevisionSeries> Series { get; }
 ```
 
-- Конструктор для инициализации без параметров.
+- Конструктор для инициализации без параметров:
 ```c#
 public StreamingService()
 ```
 
-- Конструктор с заранее известным индексом выбранного сериала.
+- Конструктор с заранее известным индексом выбранного сериала:
 ```c#
 public StreamingService(int selectedIndex) : this()
 ```
 
-- Метод для переключения на следующий сериал.
+- Метод для переключения на следующий сериал:
 ```c#
 public ActionResult SwitchToNext()
 ```
 
-- Метод для переключения на предыдущий сериал.
+- Метод для переключения на предыдущий сериал:
 ```c#
 public ActionResult SwitchToPrevious()
 ```
 
-- Метод для генерации первичной информации для пользователя про список доступных сериалов.
+- Метод для генерации первичной информации для пользователя про список доступных сериалов:
 ```c#
 public ActionResult Greet()
 ```
@@ -264,27 +266,27 @@ public ActionResult Greet()
 
 Класс, описывающий телевизионный канал.
 
-- Свойство для хранения имени данного телеканала.
+- Свойство для хранения имени данного телеканала:
 ```c#
 public string Name { get; }
 ```
 
-- Свойство для хранения относительного пути к изображению с логотипом канала.
+- Свойство для хранения относительного пути к изображению с логотипом канала:
 ```c#
 private string LogoPath { get; }
 ```
 
-- Конструктор для инициализации телевизионного канала. 
+- Конструктор для инициализации телевизионного канала:
 ```c#
 public TelevisionChannel(string logoPath, string name)
 ```
 
-- Метод для преобразования телевизионного канала в строку.
+- Метод для преобразования телевизионного канала в строку:
 ```c#
 public override string ToString()
 ```
 
-- Метод для построения полного пути к файлу с изображением.
+- Метод для построения полного пути к файлу с изображением:
 ```c#
 public string BuildLogoUrl()
 ```
@@ -293,32 +295,32 @@ public string BuildLogoUrl()
 
 Класс, описывающий телевизионный сериал.
 
-- Свойство для хранения имени данного сериала.
+- Свойство для хранения имени данного сериала:
 ```c#
 public string Name { get; set; }
 ```
 
-- Свойство для хранения пути к веб-странице с информацией про данный сериал.
+- Свойство для хранения пути к веб-странице с информацией про данный сериал:
 ```c#
 public string Url { get; set; }
 ```
 
-- Свойство для хранения пути к изображению с постером для данного сериала.
+- Свойство для хранения пути к изображению с постером для данного сериала:
 ```c#
 public string ImageUrl { get; set; }
 ```
 
-- Свойство для хранения краткого описания данного сериала.
+- Свойство для хранения краткого описания данного сериала:
 ```c#
 public string Summary { get; set; }
 ```
 
-- Конструктор (основной конструктор) для инициализации телевизионного канала.
+- Конструктор (основной конструктор) для инициализации телевизионного канала:
 ```c#
 public class TelevisionSeries(string name, string url, string imageUrl, string summary)
 ```
 
-- Метод для преобразования телевизионного сериала в строку.
+- Метод для преобразования телевизионного сериала в строку:
 ```c#
 public override string ToString()
 ```
@@ -333,12 +335,12 @@ public override string ToString()
 
 Базовый класс для любого устройства.
 
-- Свойство для хранения имени данного устройства.
+- Свойство для хранения имени данного устройства:
 ```c#
 public string Name { get; }
 ```
 
-- Конструктор для установки значения имени данного устройства.
+- Конструктор для установки значения имени данного устройства:
 ```c#
 public Device(string name)
 ```
@@ -347,149 +349,259 @@ public Device(string name)
 
 Класс пульта управления телевизором.
 
-- Свойство для хранения телевизора, подписанного на данный пульт управления.
+- Свойство для хранения телевизора, подписанного на данный пульт управления:
 ```c#
 private Television PairedTelevision { get; set; }
 ```
 
 В данном классе объявлены следующие делегаты для описания различных событий, которые могут произойти во время взаимодействия пользователя с пультом управления:
 
-- Делегат для обыкновенной кнопки.
+- Делегат для обыкновенной кнопки:
 ```c#
 public delegate ActionResult ZeroArgumentsButton();
 ```
 
-- Делегат для элемента управления на пульте, способного задавать новое разрешение.
+- Делегат для элемента управления на пульте, способного задавать новое разрешение:
 ```c#
 public delegate ActionResult ChangeResolutionButton(int newResolutionX, int newResolutionY);
 ```
 
-- Делегат для выбора новой версии программного обеспечения для обновления.
+- Делегат для выбора новой версии программного обеспечения для обновления:
 ```c#
 public delegate ActionResult UpdateSoftwareButton(string newSoftwareVersion);
 ```
 
-- Делегат для подключения внешних устройств.
+- Делегат для подключения внешних устройств:
 ```c#
 public delegate ActionResult ExternalDeviceScreencastButton(Device externalDevice);
 ```
 
-- Делегат для изменения громкости.
+- Делегат для изменения громкости:
 ```c#
 public delegate ActionResult EditVolumeButton(double newVolume);
 ```
 
 Экземпляры делегатов:
 
-- Кнопка включения (выключения).
+- Кнопка включения (выключения):
 ```c#
 public ZeroArgumentsButton? PowerSwitchButtonPushed;
 ```
 
-- Кнопка перехода на следующий канал.
+- Кнопка перехода на следующий канал:
 ```c#
 public ZeroArgumentsButton? NextChannelButtonPushed;
 ```
 
-- Кнопка перехода на предыдущий канал.
+- Кнопка перехода на предыдущий канал:
 ```c#
 public ZeroArgumentsButton? PreviousChannelButtonPushed;
 ```
 
-- Кнопка изменения громкости.
+- Кнопка изменения громкости:
 ```c#
 public EditVolumeButton? EditVolumeButtonPushed;
 ```
 
-- Кнопка изменения разрешения.
+- Кнопка изменения разрешения:
 ```c#
 public ChangeResolutionButton? ChangeResolutionButtonPushed;
 ```
 
-- Кнопка обновления программного обеспечения.
+- Кнопка обновления программного обеспечения:
 ```c#
 public UpdateSoftwareButton? UpdateSoftwareButtonPushed;
 ```
 
-- Кнопка просмотра телевидения.
+- Кнопка просмотра телевидения:
 ```c#
 public ZeroArgumentsButton? TelevisionBroadcastingButtonPushed;
 ```
 
-- Кнопка просмотра стримингового сервиса.
+- Кнопка просмотра стримингового сервиса:
 ```c#
 public ZeroArgumentsButton? StreamingButtonPushed;
 ```
 
-- Кнопка перехода в главное меню.
+- Кнопка перехода в главное меню:
 ```c#
 public ZeroArgumentsButton? MainMenuButtonPushed;
 ```
 
-- Кнопка трансляции с внешних устройств.
+- Кнопка трансляции с внешних устройств:
 ```c#
 public ExternalDeviceScreencastButton? ExternalDeviceScreencastButtonPushed;
 ```
 
-- Конструктор для инициализации пульта управления.
+- Конструктор для инициализации пульта управления:
 ```c#
 public RemoteControl(Television televisionToPair, string name = "") : base(name)
 ```
 
-- Связывание пульта с телевизором.
+- Связывание пульта с телевизором:
 ```c#
 public void Pair(Television televisionToPair)
 ```
 
-- Метод для нажатия на кнопку включения.
+- Метод для нажатия на кнопку включения:
 ```c#
 public ActionResult? PowerSwitch()
 ```
 
-- Метод для нажатия на кнопку перехода на следующий канал.
+- Метод для нажатия на кнопку перехода на следующий канал:
 ```c#
 public ActionResult? NextChannel()
 ```
 
-- Метод для нажатия на кнопку перехода на предыдущий канал.
+- Метод для нажатия на кнопку перехода на предыдущий канал:
 ```c#
 public ActionResult? PreviousChannel()
 ```
 
-- Метод для нажатия на кнопку изменения громкости.
+- Метод для нажатия на кнопку изменения громкости:
 ```c#
 public ActionResult? EditVolume(double newVolume)
 ```
 
-- Метод для нажатия на кнопку изменения разрешения.
+- Метод для нажатия на кнопку изменения разрешения:
 ```c#
 public ActionResult? ChangeResolution(int newResolutionX, int newResolutionY)
 ```
 
-- Метод для нажатия на кнопку обновления программного обеспечения.
+- Метод для нажатия на кнопку обновления программного обеспечения:
 ```c#
 public ActionResult? UpdateSoftware(string newSoftwareVersion)
 ```
 
-- Метод для нажатия на кнопку телевизионной трансляции.
+- Метод для нажатия на кнопку телевизионной трансляции:
 ```c#
 public ActionResult? TelevisionBroadcasting()
 ```
 
-- Метод для нажатия на кнопку просмотра стримингового сервиса.
+- Метод для нажатия на кнопку просмотра стримингового сервиса:
 ```c#
 public ActionResult? Streaming()
 ```
 
-- Метод для нажатия на кнопку перехода в главное меню.
+- Метод для нажатия на кнопку перехода в главное меню:
 ```c#
 public ActionResult? MainMenu()
 ```
 
-- Метод для нажатия на кнопку трансляции с внешних устройств.
+- Метод для нажатия на кнопку трансляции с внешних устройств:
 ```c#
 public ActionResult? ExternalDeviceScreencast(Device externalDevice)
 ```
+
+## Подсистемы телевизора:
+
+### 9. Screen
+
+Класс, описывающий подсистему экрана.
+
+- Свойство для хранения текущего разрешения экрана по горизонтали:
+```c#
+public int ResolutionX { get; private set; }
+```
+
+- Свойство для хранения текущего разрешения экрана по вертикали:
+```c#
+public int ResolutionX { get; private set; }
+```
+
+- Свойство для хранения текущего разрешения экрана по горизонтали:
+```c#
+private int MaxResolutionX { get; }
+```
+
+- Свойство для хранения текущего разрешения экрана по вертикали:
+```c#
+private int MaxResolutionY { get; }
+```
+
+- Свойство для хранения типа матрицы экрана:
+```c#
+private string MatrixType { get; }
+```
+
+- Свойство для хранения высоты экрана:
+```c#
+private double Height { get; }
+```
+
+- Свойство для хранения ширины экрана:
+```c#
+private double Width { get; }
+```
+
+- Конструктор для экрана:
+```c#
+public Screen(int maxResolutionX, int maxResolutionY, string matrixType, double height, double width)
+```
+
+- Метод для изменения разрешения экрана:
+```c#
+public void ChangeResolution(int newResolutionX, int newResolutionY)
+```
+
+### 10. Software
+
+- Свойство для хранения установленной версии программного обеспечения:
+```c#
+public string InstalledVersion { get; private set; }
+```
+
+- Конструктор для программного обеспечения:
+```c#
+public Software(string installedVersion = "0.0")
+```
+
+- Метод для обновления версии программного обеспечения:
+```c#
+public void UpdateSoftware(string newVersion)
+```
+
+### 10. Software
+
+- Свойство для хранения значения текущей громкости:
+```c#
+public double Volume { get; private set; }
+```
+
+- Свойство для хранения значения мощности звуковой системы:
+```c#
+public double Power { get; }
+```
+
+- Свойство, определяющее, равна ли громкость 0:
+```c#
+public bool IsMuted { get; private set; }
+```
+
+- Конструктор для звуковой системы:
+```c#
+public SoundSystem(double power)
+```
+
+- Метод для изменения громкости:
+```c#
+public void EditVolume(double newVolume)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

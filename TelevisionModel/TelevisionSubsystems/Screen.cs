@@ -4,9 +4,9 @@ namespace TelevisionModel.TelevisionSubsystems
 {
     public class Screen
     {
-        public int ResolutionX { get; set; }
+        public int ResolutionX { get; private set; }
         
-        public int ResolutionY { get; set; }
+        public int ResolutionY { get; private set; }
         
         private int MaxResolutionX { get; }
         

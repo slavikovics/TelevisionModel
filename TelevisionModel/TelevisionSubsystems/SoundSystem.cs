@@ -1,6 +1,6 @@
 ﻿using TelevisionModel.Data;
 
-namespace TelevisionModel
+namespace TelevisionModel.TelevisionSubsystems
 {
     public class SoundSystem
     {
@@ -9,8 +9,6 @@ namespace TelevisionModel
         public double Power { get; }
 
         public bool IsMuted { get; private set; }
-        
-        private bool IsTurnedOn { get; set; }
 
         public SoundSystem(double power)
         {
