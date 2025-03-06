@@ -828,4 +828,10 @@ private ActionResult SwitchToExternalDeviceScreencastState(Device externalDevice
 private string UpdateTechnicalSpecifications()
 ```
 
+## Диаграммы классов
 
+### 1. Диаграмма классов состояний
+![Диаграмма классов состояний](./Images/StatesClassDiagram.jpg)
+
+### 2. Диаграмма классов подсистем телевизора
+![Диаграмма классов состояний](./Images/ClassDiagram.jpg)

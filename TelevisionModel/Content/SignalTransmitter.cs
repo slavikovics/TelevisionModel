@@ -9,22 +9,6 @@ public static class SignalTransmitter
     
     private static readonly List<TelevisionSeries> AvailableSeries = new List<TelevisionSeries>();
     
-    private static void AddTelevisionChannel(string channelName, string? logoPath)
-    {
-        if (logoPath is null) return;
-            
-        TelevisionChannel televisionChannel = new TelevisionChannel(logoPath, channelName);
-        AvailableChannels.Add(televisionChannel);
-    }
-
-    private static void RemoveTelevisionChannel(string channelName)
-    {
-        TelevisionChannel? channelToRemove = AvailableChannels.Find(channel => channel.Name == channelName);
-        if (channelToRemove is null) throw new ArgumentException(Resources.TelevisionChannelDoesNotExistErrorMessage);
-
-        AvailableChannels.Remove(channelToRemove);
-    }
-    
     public static List<TelevisionChannel> FindChannels()
     {
         string text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Resources.ChannelsDataRelativePath));
@@ -62,5 +46,21 @@ public static class SignalTransmitter
         }
         
         return AvailableSeries;
+    }
+    
+    private static void AddTelevisionChannel(string channelName, string? logoPath)
+    {
+        if (logoPath is null) return;
+            
+        TelevisionChannel televisionChannel = new TelevisionChannel(logoPath, channelName);
+        AvailableChannels.Add(televisionChannel);
+    }
+
+    private static void RemoveTelevisionChannel(string channelName)
+    {
+        TelevisionChannel? channelToRemove = AvailableChannels.Find(channel => channel.Name == channelName);
+        if (channelToRemove is null) throw new ArgumentException(Resources.TelevisionChannelDoesNotExistErrorMessage);
+
+        AvailableChannels.Remove(channelToRemove);
     }
 }
