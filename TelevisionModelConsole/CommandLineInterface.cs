@@ -48,7 +48,7 @@ public class CommandLineInterface
         _options += "8. Television broadcast\n";
         _options += "9. Streaming\n";
         _options += "10. Screencast from external device\n";
-        _options += "exit\n";
+        _options += "11. save and exit\n";
     }
 
     public void UserInteraction()
@@ -66,7 +66,7 @@ public class CommandLineInterface
             {
                 _commands[userInput]();
             }
-            else if (userInput == "exit") return;
+            else if (userInput == "11") return;
         }
     }
 
