@@ -1,0 +1,32 @@
+﻿@model TelevisionModel.Content.TelevisionChannel
+
+@{
+    ViewData["Title"] = "Channel broadcast";
+}
+
+<div class="text-center">
+
+    <div class="navbar-expand-lg" style="margin-top: 30px">
+        <button type="button" class="btn btn-primary">Power</button>
+        <button type="button" class="btn btn-primary">Change volume</button>
+        <a asp-controller="Television" asp-action="Next" style="text-decoration: none">
+            <button type="button" class="btn btn-primary">Next</button>
+        </a>
+        <a asp-controller="Television" asp-action="Previous" style="text-decoration: none">
+            <button type="button" class="btn btn-primary">Previous</button>
+        </a>
+        <a asp-controller="Television" asp-action="TelevisionBroadcast" style="text-decoration: none">
+            <button type="button" class="btn btn-primary">Main menu</button>
+        </a>
+        <button type="button" class="btn btn-primary">Streaming</button>
+        <button type="button" class="btn btn-primary">Screencast</button>
+    </div>
+
+    <div class="container mt-5">
+        <div class="tv-screen">
+            <h4 style="color: white; margin-top: 10px; font-size: 25px">@ViewData["Title"]</h4>
+            <p>Channel name: @Model.Name</p>
+            <img src="@Model.BuildLogoUrl()" alt="Television channel image"/>
+        </div>
+    </div>
+</div>

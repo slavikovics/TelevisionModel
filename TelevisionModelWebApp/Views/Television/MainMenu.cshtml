@@ -1,0 +1,30 @@
+﻿@model TelevisionModel.Utils.TechnicalSpecifications
+
+@{
+    ViewData["Title"] = "Main menu";
+}
+
+<div class="text-center">
+
+    <div class="navbar-expand-lg" style="margin-top: 30px">
+        <button type="button" class="btn btn-primary">Power</button>
+        <button type="button" class="btn btn-primary">Change volume</button>
+        <button type="button" class="btn btn-primary">Change resolution</button>
+        <button type="button" class="btn btn-primary">Update software</button>
+        <a asp-controller="Television" asp-action="TelevisionBroadcast">
+            <button type="button" class="btn btn-primary">Television broadcast</button>
+        </a>
+        <button type="button" class="btn btn-primary">Streaming</button>
+        <button type="button" class="btn btn-primary">Screencast</button>
+    </div>
+
+    <div class="container mt-5">
+        <div class="tv-screen">
+            <h4 style="color: white; margin-top: 10px; font-size: 25px">@ViewData["Title"]</h4>
+            <p>Current volume: @Model.CurrentVolume</p>
+            <p>Current resolution X: @Model.ResolutionX</p>
+            <p>Current resolution Y: @Model.ResolutionY</p>
+            <p>Software version: @Model.SoftwareVersion</p>
+        </div>
+    </div>
+</div>

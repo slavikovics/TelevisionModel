@@ -6,7 +6,9 @@ namespace TelevisionModel.Content;
 public class ChannelBroadcastingSystem : IContentProvider
 {
     public int SelectedChannelIndex { get; private set; }
-    
+
+    public TelevisionChannel SelectedChannel => AvailableChannels[SelectedChannelIndex];
+
     private List<TelevisionChannel> AvailableChannels { get; }
 
     public ChannelBroadcastingSystem()
