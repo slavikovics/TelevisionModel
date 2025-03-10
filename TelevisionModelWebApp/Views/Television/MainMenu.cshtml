@@ -55,31 +55,22 @@
 </div>
 
 <script>
-    // Получаем элемент alert и кнопку закрытия
     var alertElement = document.getElementById('alert');
     var closeButton = alertElement.querySelector('.btn-close');
-
-    // Функция для показа alert
+    
     function showAlert() {
         alertElement.classList.add('show');
     }
-
-    // Обработчик события для кнопки закрытия
-    closeButton.addEventListener('click', function() {
-        alertElement.classList.remove('show'); // Убираем класс для исчезновения
+    
+    function hideAlert() {
+        alertElement.classList.remove('show');
         setTimeout(function() {
-            alertElement.style.display = 'none'; // Скрываем элемент после анимации
-        }, 500); // Время должно совпадать с длительностью анимации
-    });
-
-    // Автоматическое закрытие alert через 3 секунды
-    setTimeout(function() {
-        alertElement.classList.remove('show'); // Убираем класс для исчезновения
-        setTimeout(function() {
-            alertElement.style.display = 'none'; // Скрываем элемент после анимации
-        }, 500); // Время должно совпадать с длительностью анимации
-    }, 3000);
-
-    // Показываем alert при загрузке страницы
+            alertElement.style.display = 'none';
+        }, 500);
+    }
+    
+    closeButton.addEventListener('click', hideAlert);
+    setTimeout(hideAlert, 3000);
+    
     window.onload = showAlert;
 </script>

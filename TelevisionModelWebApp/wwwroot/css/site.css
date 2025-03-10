@@ -96,13 +96,13 @@ a
 
 .alert-fade {
   opacity: 0;
-  transform: translateY(-20px); /* Сдвигаем вверх на 20px */
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Переходы для opacity и transform */
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .alert-fade.show {
-  opacity: 1; /* Полная непрозрачность */
-  transform: translateY(20px); /* Сброс сдвига */
+  opacity: 1;
+  transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
