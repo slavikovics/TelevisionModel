@@ -23,19 +23,21 @@ public class TelevisionController : Controller
 
     public IActionResult TurnOff()
     {
-        //_remoteControl.PowerSwitch();
+        if (_television.State != States.TurnedOff) _remoteControl.PowerSwitch();
         return View();
     }
 
     public IActionResult TurnOn()
     {
         _remoteControl.PowerSwitch();
-        return MainMenu();
+        TempData["PreviousAction"] = "MainMenu";
+        return View("MainMenu", _television.Specifications);
     }
 
     public IActionResult MainMenu()
     {
-        _remoteControl.PowerSwitch();
+        _remoteControl.MainMenu();
+        TempData["PreviousAction"] = ControllerContext.ActionDescriptor.ActionName;
         return View(_television.Specifications);
     }
 
@@ -53,9 +55,11 @@ public class TelevisionController : Controller
         return View("Streaming", _television.StreamingService.SelectedSeries);
     }
     
-    public IActionResult EditVolume()
+    [HttpPost]
+    public IActionResult EditVolume(string newVolume)
     {
-        return View();
+        TempData["InfoMessage"] = _remoteControl.EditVolume(Convert.ToDouble(newVolume))?.MessageDescription;
+        return View("MainMenu", _television.Specifications);
     }
     
     public IActionResult ChangeResolution()

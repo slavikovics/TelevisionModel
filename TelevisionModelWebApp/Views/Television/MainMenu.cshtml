@@ -4,29 +4,82 @@
     ViewData["Title"] = "Main menu";
 }
 
+@if (TempData["InfoMessage"] != null)
+{
+    <div id="alert" class="alert alert-info alert-dismissible alert-fade custom-alert position-fixed" style="top: -10px; right: 10px; z-index: 1050;" role="alert">
+        @TempData["InfoMessage"]
+        <button type="button" class="close btn btn-close" data-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+}
+
 <div class="text-center">
 
     <div class="navbar-expand-lg" style="margin-top: 30px">
-        <button type="button" class="btn btn-primary">Power</button>
-        <button type="button" class="btn btn-primary">Change volume</button>
-        <button type="button" class="btn btn-primary">Change resolution</button>
-        <button type="button" class="btn btn-primary">Update software</button>
+        <a asp-controller="Television" asp-action="TurnOff">
+            <button type="button" class="btn btn-dark">Power</button>
+        </a>
         <a asp-controller="Television" asp-action="TelevisionBroadcast">
-            <button type="button" class="btn btn-primary">Television broadcast</button>
+            <button type="button" class="btn btn-dark">Television broadcast</button>
         </a>
         <a asp-controller="Television" asp-action="Streaming">
-        <button type="button" class="btn btn-primary">Streaming</button>
+            <button type="button" class="btn btn-dark">Streaming</button>
         </a>
-        <button type="button" class="btn btn-primary">Screencast</button>
+        <button type="button" class="btn btn-dark">Screencast</button>
     </div>
 
     <div class="container mt-5">
         <div class="tv-screen">
-            <h4 style="color: white; margin-top: 10px; font-size: 25px">@ViewData["Title"]</h4>
-            <p>Current volume: @Model.CurrentVolume</p>
-            <p>Current resolution X: @Model.ResolutionX</p>
-            <p>Current resolution Y: @Model.ResolutionY</p>
-            <p>Software version: @Model.SoftwareVersion</p>
+            <h4 style="color: white; margin-top: 10px; margin-bottom: 20px; font-size: 25px">@ViewData["Title"]</h4>
+            <div class="container mt-5 d-flex align-items-center">
+                <form asp-action="EditVolume" method="post">
+                    <h5>Edit volume (current volume: @Model.CurrentVolume): </h5>
+                    <input name="newVolume" type="range" class="form-range" id="volumeRange" min="0" max="100" value="@Model.CurrentVolume" style="width: 200px; margin-right: 20px; margin-left: 20px; background: #1a1e21">
+                    <button type="submit" class="btn btn-dark">Update</button>
+                </form>
+            </div>
+            <div class="container mt-5 d-flex align-items-center">
+                <h5>Software version: </h5>
+                <input type="text" class="form-control" placeholder="@Model.SoftwareVersion" style="width: 200px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
+                <button class="btn btn-dark">Update</button>
+            </div>
+            <div class="container mt-5 d-flex align-items-center">
+                <h5>ResolutionX: </h5>
+                <input type="number" class="form-control" placeholder="@Model.ResolutionX" style="width: 100px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
+                <h5>ResolutionY: </h5>
+                <input type="number" class="form-control" placeholder="@Model.ResolutionY" style="width: 100px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
+                <button class="btn btn-dark">Update</button>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    // Получаем элемент alert и кнопку закрытия
+    var alertElement = document.getElementById('alert');
+    var closeButton = alertElement.querySelector('.btn-close');
+
+    // Функция для показа alert
+    function showAlert() {
+        alertElement.classList.add('show');
+    }
+
+    // Обработчик события для кнопки закрытия
+    closeButton.addEventListener('click', function() {
+        alertElement.classList.remove('show'); // Убираем класс для исчезновения
+        setTimeout(function() {
+            alertElement.style.display = 'none'; // Скрываем элемент после анимации
+        }, 500); // Время должно совпадать с длительностью анимации
+    });
+
+    // Автоматическое закрытие alert через 3 секунды
+    setTimeout(function() {
+        alertElement.classList.remove('show'); // Убираем класс для исчезновения
+        setTimeout(function() {
+            alertElement.style.display = 'none'; // Скрываем элемент после анимации
+        }, 500); // Время должно совпадать с длительностью анимации
+    }, 3000);
+
+    // Показываем alert при загрузке страницы
+    window.onload = showAlert;
+</script>

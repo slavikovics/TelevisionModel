@@ -4,7 +4,7 @@ public class ActionResult
 {
     public List<string> MessageDetails { get; private set; }
     
-    private string MessageDescription { get; set; }  
+    public string MessageDescription { get; set; }  
 
     public ActionResult(string messageDescription)
     {

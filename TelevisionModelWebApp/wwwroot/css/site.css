@@ -29,6 +29,7 @@ body {
   /*border: 1px solid white;*/
   border-radius: 25px;
   overflow: hidden;
+  padding: 20px;
   /*background-color: #0D6EFD;*/
 }
 
@@ -74,4 +75,38 @@ h5
 img
 {
   border-radius: 15px;
+}
+
+a
+{
+  text-decoration: none;
+}
+
+.form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  background: #2c3034; 
+  border: 2px solid #6c757d;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+.alert-fade {
+  opacity: 0;
+  transform: translateY(-20px); /* Сдвигаем вверх на 20px */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Переходы для opacity и transform */
+}
+
+.alert-fade.show {
+  opacity: 1; /* Полная непрозрачность */
+  transform: translateY(20px); /* Сброс сдвига */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.custom-alert 
+{
+  opacity: 0;  
 }
