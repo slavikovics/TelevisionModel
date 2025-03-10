@@ -26,14 +26,52 @@ body {
 
 .tv-screen
 {
-  border: 1px solid white;
+  /*border: 1px solid white;*/
   border-radius: 25px;
   overflow: hidden;
-  height: 500px;
-  background-color: #0D6EFD;
+  /*background-color: #0D6EFD;*/
+}
+
+.streaming-container
+{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.left
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.right
+{
+  display: flex; /* Используем Flexbox для выравнивания текста */
+  justify-content: center; /* Центрируем по вертикали */
+  align-items: center; /* Центрируем по вертикали */
+  text-align: left; /* Выравнивание текста по левому краю */
+  padding: 20px; /* Отступы для удобства */
+  flex-direction: column;
+}
+
+.left-container-button
+{
+  margin-top: 10px;
 }
 
 p
 {
   color: white;
+}
+
+h5
+{
+  color: white;
+}
+
+img
+{
+  border-radius: 15px;
 }

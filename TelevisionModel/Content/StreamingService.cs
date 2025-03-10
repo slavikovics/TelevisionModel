@@ -7,6 +7,8 @@ namespace TelevisionModel.Content;
 public class StreamingService : IContentProvider
 {
     public int SelectedIndex { get; private set; }
+    
+    public TelevisionSeries SelectedSeries => Series[SelectedIndex];
 
     private List<TelevisionSeries> Series { get; }
 

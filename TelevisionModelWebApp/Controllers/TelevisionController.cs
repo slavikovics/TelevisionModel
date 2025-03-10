@@ -42,13 +42,15 @@ public class TelevisionController : Controller
     public IActionResult Next()
     {
         _remoteControl.NextChannel();
-        return View("TelevisionBroadcast", _television.CurrentChannelBroadcastingSystem.SelectedChannel);
+        if (_television.State == States.TelevisionBroadcasting) return View("TelevisionBroadcast", _television.CurrentChannelBroadcastingSystem.SelectedChannel);
+        return View("Streaming", _television.StreamingService.SelectedSeries);
     }
     
     public IActionResult Previous()
     {
         _remoteControl.PreviousChannel();
-        return View("TelevisionBroadcast", _television.CurrentChannelBroadcastingSystem.SelectedChannel);
+        if (_television.State == States.TelevisionBroadcasting) return View("TelevisionBroadcast", _television.CurrentChannelBroadcastingSystem.SelectedChannel);
+        return View("Streaming", _television.StreamingService.SelectedSeries);
     }
     
     public IActionResult EditVolume()
@@ -74,7 +76,8 @@ public class TelevisionController : Controller
     
     public IActionResult Streaming()
     {
-        return View();
+        _remoteControl.Streaming();
+        return View(_television.StreamingService.SelectedSeries);
     }
     
     public IActionResult ScreencastFromExternalDevice()
