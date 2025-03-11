@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TelevisionModel;
+using TelevisionModel.Devices;
 using TelevisionModel.Utils;
 using TelevisionModelWebApp.Models;
 
@@ -37,29 +38,71 @@ public class TelevisionController : Controller
     public IActionResult MainMenu()
     {
         _remoteControl.MainMenu();
-        TempData["PreviousAction"] = ControllerContext.ActionDescriptor.ActionName;
+        
         return View(_television.Specifications);
     }
 
     public IActionResult Next()
     {
         _remoteControl.NextChannel();
-        if (_television.State == States.TelevisionBroadcasting) return View("TelevisionBroadcast", _television.CurrentChannelBroadcastingSystem.SelectedChannel);
-        return View("Streaming", _television.StreamingService.SelectedSeries);
+
+        if (_television.State == States.TelevisionBroadcasting)
+        {
+            BroadcastingModel broadcastingModel =
+                new BroadcastingModel(_television.CurrentChannelBroadcastingSystem.SelectedChannel,
+                    _television.Specifications);
+            return View("TelevisionBroadcast", broadcastingModel);
+        }
+        
+        StreamingModel streamingModel =
+            new StreamingModel(_television.StreamingService.SelectedSeries, _television.Specifications);
+        return View("Streaming", streamingModel);
     }
     
     public IActionResult Previous()
     {
         _remoteControl.PreviousChannel();
-        if (_television.State == States.TelevisionBroadcasting) return View("TelevisionBroadcast", _television.CurrentChannelBroadcastingSystem.SelectedChannel);
-        return View("Streaming", _television.StreamingService.SelectedSeries);
+
+        if (_television.State == States.TelevisionBroadcasting)
+        {
+            BroadcastingModel broadcastingModel =
+                new BroadcastingModel(_television.CurrentChannelBroadcastingSystem.SelectedChannel,
+                    _television.Specifications);
+            return View("TelevisionBroadcast", broadcastingModel);
+        }
+        
+        StreamingModel streamingModel =
+            new StreamingModel(_television.StreamingService.SelectedSeries, _television.Specifications);
+        return View("Streaming", streamingModel);
     }
     
     [HttpPost]
-    public IActionResult EditVolume(string newVolume)
+    public IActionResult EditVolume(string newVolume, string currentView)
     {
         TempData["InfoMessage"] = _remoteControl.EditVolume(Convert.ToDouble(newVolume))?.MessageDescription;
-        return View("MainMenu", _television.Specifications);
+        
+        if (currentView == "TelevisionBroadcast")
+        {
+            BroadcastingModel broadcastingModel =
+                new BroadcastingModel(_television.CurrentChannelBroadcastingSystem.SelectedChannel,
+                    _television.Specifications);
+            return View(currentView, broadcastingModel);
+        }
+
+        if (currentView == "Streaming")
+        {
+            StreamingModel streamingModel =
+                new StreamingModel(_television.StreamingService.SelectedSeries, _television.Specifications);
+            return View(currentView, streamingModel);
+        }
+
+        if (currentView == "Screencast")
+        {
+            ExternalDeviceModel externalDeviceModel = new ExternalDeviceModel(_television.Specifications);
+            return View(currentView, externalDeviceModel);
+        }
+        
+        return View(currentView, _television.Specifications);
     }
     
     [HttpPost]
@@ -79,18 +122,32 @@ public class TelevisionController : Controller
     public IActionResult TelevisionBroadcast()
     {
         _remoteControl.TelevisionBroadcasting(); 
-        return View(_television.CurrentChannelBroadcastingSystem.SelectedChannel);
+        BroadcastingModel broadcastingModel =
+            new BroadcastingModel(_television.CurrentChannelBroadcastingSystem.SelectedChannel,
+                _television.Specifications);
+        return View(broadcastingModel);
     }
     
     public IActionResult Streaming()
     {
         _remoteControl.Streaming();
-        return View(_television.StreamingService.SelectedSeries);
+        StreamingModel model =
+            new StreamingModel(_television.StreamingService.SelectedSeries, _television.Specifications);
+        return View(model);
     }
     
-    public IActionResult ScreencastFromExternalDevice()
+    [HttpGet]
+    public IActionResult Screencast()
     {
-        return View();
+        ExternalDeviceModel externalDeviceModel = new ExternalDeviceModel(_television.Specifications);
+        return View(externalDeviceModel);
+    }
+
+    [HttpPost]
+    public IActionResult Screencast(string newDeviceName, bool isConnected = false)
+    { 
+        if (isConnected) return View(new ExternalDeviceModel(_television.Specifications));
+        return View(new ExternalDeviceModel(newDeviceName, _television.Specifications));
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

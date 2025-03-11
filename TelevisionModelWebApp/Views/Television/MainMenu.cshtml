@@ -17,7 +17,9 @@
 
     <div class="navbar-expand-lg" style="margin-top: 30px">
         <a asp-controller="Television" asp-action="TurnOff">
-            <button type="button" class="btn btn-dark">Power</button>
+            <button type="button" class="btn btn-dark">
+                Power
+            </button>
         </a>
         <a asp-controller="Television" asp-action="TelevisionBroadcast">
             <button type="button" class="btn btn-dark">Television broadcast</button>
@@ -25,7 +27,9 @@
         <a asp-controller="Television" asp-action="Streaming">
             <button type="button" class="btn btn-dark">Streaming</button>
         </a>
-        <button type="button" class="btn btn-dark">Screencast</button>
+        <a asp-action="Screencast">
+            <button type="button" class="btn btn-dark">Screencast</button>
+        </a>
     </div>
 
     <div class="container mt-5">
@@ -34,7 +38,8 @@
             <div class="container mt-5 d-flex align-items-center">
                 
                 <form class="container" asp-action="EditVolume" method="post">
-                    <h5>Edit volume (current volume: @Model.CurrentVolume): </h5>
+                    <h5>Edit volume (current volume: @Model.CurrentVolume%): </h5>
+                    <input type="text" name="currentView" style="display:none" value="MainMenu">
                     <input name="newVolume" type="range" class="form-range" id="volumeRange" min="0" max="100" value="@Model.CurrentVolume" style="width: 200px; margin-right: 20px; margin-left: 20px; background: #1a1e21">
                     <button type="submit" class="btn btn-dark">Update</button>
                 </form>
@@ -61,24 +66,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    var alertElement = document.getElementById('alert');
-    var closeButton = alertElement.querySelector('.btn-close');
-    
-    function showAlert() {
-        alertElement.classList.add('show');
-    }
-    
-    function hideAlert() {
-        alertElement.classList.remove('show');
-        setTimeout(function() {
-            alertElement.style.display = 'none';
-        }, 500);
-    }
-    
-    closeButton.addEventListener('click', hideAlert);
-    setTimeout(hideAlert, 3000);
-    
-    window.onload = showAlert;
-</script>

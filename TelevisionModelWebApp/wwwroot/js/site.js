@@ -1,4 +1,18 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var alertElement = document.getElementById('alert');
+var closeButton = alertElement.querySelector('.btn-close');
 
-// Write your JavaScript code.
+function showAlert() {
+  alertElement.classList.add('show');
+}
+
+function hideAlert() {
+  alertElement.classList.remove('show');
+  setTimeout(function() {
+    alertElement.style.display = 'none';
+}, 500);
+}
+
+closeButton.addEventListener('click', hideAlert);
+setTimeout(hideAlert, 3000);
+
+window.onload = showAlert;

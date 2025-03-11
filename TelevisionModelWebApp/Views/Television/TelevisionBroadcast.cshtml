@@ -1,7 +1,15 @@
-﻿@model TelevisionModel.Content.TelevisionChannel
+﻿@model TelevisionModelWebApp.Models.BroadcastingModel
 
 @{
-    ViewData["Title"] = "Channel broadcast";
+    ViewData["Title"] = "Television broadcast";
+}
+@if (TempData["InfoMessage"] != null)
+{
+<div id="alert" class="alert alert-info alert-dismissible alert-fade custom-alert position-fixed" style="top: -10px; right: 10px; z-index: 1050;" role="alert">
+    @TempData["InfoMessage"]
+    <button type="button" class="close btn btn-close" data-dismiss="alert" aria-label="Close">
+    </button>
+</div>
 }
 
 <div class="text-center">
@@ -9,13 +17,6 @@
     <div class="navbar-expand-lg" style="margin-top: 30px">
         <a asp-controller="Television" asp-action="TurnOff">
             <button type="button" class="btn btn-dark">Power</button>
-        </a>
-        <button type="button" class="btn btn-dark">Change volume</button>
-        <a asp-controller="Television" asp-action="Next">
-            <button type="button" class="btn btn-dark">Next</button>
-        </a>
-        <a asp-controller="Television" asp-action="Previous">
-            <button type="button" class="btn btn-dark">Previous</button>
         </a>
         <a asp-controller="Television" asp-action="MainMenu">
             <button type="button" class="btn btn-dark">Main menu</button>
@@ -29,8 +30,24 @@
     <div class="container mt-5">
         <div class="tv-screen">
             <h4 style="color: white; margin-top: 10px; font-size: 25px">@ViewData["Title"]</h4>
-            <p>Channel name: @Model.Name</p>
-            <img src="@Model.BuildLogoUrl()" alt="Television channel image"/>
+            <p>Channel name: @Model.Channel.Name</p>
+            <img src="@Model.Channel.BuildLogoUrl()" alt="Television channel image"/>
         </div>
+    </div>
+    <div class="align-content-center">
+        <a asp-controller="Television" asp-action="Previous">
+            <button type="button" class="btn btn-dark">Previous</button>
+        </a>
+        <a asp-controller="Television" asp-action="Next">
+            <button type="button" class="btn btn-dark">Next</button>
+        </a>
+    </div>
+    <div class="container mt-5 d-flex align-items-center" style="margin-top: 30px">
+        <form class="container" asp-action="EditVolume" method="post">
+            <h5>Edit volume (current volume: @Model.Specifications.CurrentVolume%): </h5>
+            <input type="text" name="currentView" style="display:none" value="TelevisionBroadcast">
+            <input name="newVolume" type="range" class="form-range" id="volumeRange" min="0" max="100" value="@Model.Specifications.CurrentVolume" style="width: 200px; margin-right: 20px; margin-left: 20px; background: #1a1e21">
+            <button type="submit" class="btn btn-dark">Update</button>
+        </form>
     </div>
 </div>

@@ -1,7 +1,7 @@
-@model TelevisionModelWebApp.Models.StreamingModel
+@model TelevisionModelWebApp.Models.ExternalDeviceModel
 
 @{
-    ViewData["Title"] = "Streaming";
+    ViewData["Title"] = "Screencast";
 }
 @if (TempData["InfoMessage"] != null)
 {
@@ -21,41 +21,40 @@
         <a asp-controller="Television" asp-action="MainMenu">
             <button type="button" class="btn btn-dark">Main menu</button>
         </a>
+        <a asp-controller="Television" asp-action="Streaming">
+            <button type="button" class="btn btn-dark">Streaming</button>
+        </a>
         <a asp-controller="Television" asp-action="TelevisionBroadcast">
             <button type="button" class="btn btn-dark">Television broadcast</button>
         </a>
-        <button type="button" class="btn btn-dark">Screencast</button>
     </div>
-
-    <div class="container mt-5">
-        <div class="tv-screen">
-            <h4 style="color: white; margin-top: 10px; font-size: 25px">@ViewData["Title"]</h4>
-            <div class="streaming-container">
-                <div class="left">
-                    <h5>@Model.Series.Name</h5>
-                    <img src="@Model.Series.ImageUrl" alt="Television series image"/>
-                    <a href="@Model.Series.Url">
-                        <button type="button" class="btn btn-dark left-container-button">Learn more</button>
+    <div class="container" style="margin-top: 30px">
+        <h5>@ViewData["Title"]</h5>
+        @if (Model.Device.Name != "None")
+        {
+            <p>Connected device: @Model.Device.Name</p>
+        }
+    </div>
+    <div class="container mt-5 d-flex justify-content-center align-items-center" style="margin-top: 30px">
+        <form asp-action="Screencast" method="post">
+            <h5>Connect to a new device:</h5>
+            <input name="newDeviceName" type="text" class="form-control" placeholder="@Model.Device.Name" style="width: 200px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
+            <div class="container" style="margin: 15px">
+                <button type="submit" class="btn btn-dark" style="margin: 5px">Connect</button>
+                @if (Model.Device.Name != "None")
+                {
+                    <input title="is connected" name="isConnected" type="checkbox" value="true" style="display: none">
+                    <a asp-action="Screencast">
+                        <button class="btn btn-danger" style="margin: 5px">Disconnect</button>
                     </a>
-                </div>
-                <div class="right">
-                    @Html.Raw(Model.Series.Summary)
-                </div>
+                }
             </div>
-        </div>
-    </div>
-    <div class="align-content-center">
-        <a asp-controller="Television" asp-action="Previous">
-            <button type="button" class="btn btn-dark">Previous</button>
-        </a>
-        <a asp-controller="Television" asp-action="Next">
-            <button type="button" class="btn btn-dark">Next</button>
-        </a>
+        </form>
     </div>
     <div class="container mt-5 d-flex align-items-center" style="margin-top: 30px">
         <form class="container" asp-action="EditVolume" method="post">
             <h5>Edit volume (current volume: @Model.Specifications.CurrentVolume%): </h5>
-            <input type="text" name="currentView" style="display:none" value="Streaming">
+            <input type="text" name="currentView" style="display:none" value="Screencast">
             <input name="newVolume" type="range" class="form-range" id="volumeRange" min="0" max="100" value="@Model.Specifications.CurrentVolume" style="width: 200px; margin-right: 20px; margin-left: 20px; background: #1a1e21">
             <button type="submit" class="btn btn-dark">Update</button>
         </form>
