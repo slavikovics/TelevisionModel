@@ -32,24 +32,32 @@
         <div class="tv-screen">
             <h4 style="color: white; margin-top: 10px; margin-bottom: 20px; font-size: 25px">@ViewData["Title"]</h4>
             <div class="container mt-5 d-flex align-items-center">
-                <form asp-action="EditVolume" method="post">
+                
+                <form class="container" asp-action="EditVolume" method="post">
                     <h5>Edit volume (current volume: @Model.CurrentVolume): </h5>
                     <input name="newVolume" type="range" class="form-range" id="volumeRange" min="0" max="100" value="@Model.CurrentVolume" style="width: 200px; margin-right: 20px; margin-left: 20px; background: #1a1e21">
                     <button type="submit" class="btn btn-dark">Update</button>
                 </form>
+                
             </div>
-            <div class="container mt-5 d-flex align-items-center">
-                <h5>Software version: </h5>
-                <input type="text" class="form-control" placeholder="@Model.SoftwareVersion" style="width: 200px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
-                <button class="btn btn-dark">Update</button>
+            <div class="container mt-5 d-flex justify-content-center align-items-center">
+                
+                <form asp-action="UpdateSoftware" method="post">
+                    <h5>Software version:</h5>
+                    <input name="newVersion" type="text" class="form-control" placeholder="@Model.SoftwareVersion" style="width: 200px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
+                    <button class="btn btn-dark" style="margin-top: 15px">Update</button>
+                </form>
+                
             </div>
-            <div class="container mt-5 d-flex align-items-center">
-                <h5>ResolutionX: </h5>
-                <input type="number" class="form-control" placeholder="@Model.ResolutionX" style="width: 100px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
-                <h5>ResolutionY: </h5>
-                <input type="number" class="form-control" placeholder="@Model.ResolutionY" style="width: 100px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
-                <button class="btn btn-dark">Update</button>
-            </div>
+            <form asp-action="ChangeResolution" method="post">
+                <div class="container mt-5 d-flex justify-content-center align-items-center">
+                    <h5>ResolutionX: </h5>
+                    <input name="resolutionX" type="number" class="form-control" placeholder="@Model.ResolutionX" style="width: 100px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
+                    <h5>ResolutionY: </h5>
+                    <input name="resolutionY" type="number" class="form-control" placeholder="@Model.ResolutionY" style="width: 100px; margin-right: 20px; margin-left: 20px; background: #1a1e21; color: white">
+                    <button class="btn btn-dark">Update</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

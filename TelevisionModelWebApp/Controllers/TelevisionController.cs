@@ -62,14 +62,18 @@ public class TelevisionController : Controller
         return View("MainMenu", _television.Specifications);
     }
     
-    public IActionResult ChangeResolution()
+    [HttpPost]
+    public IActionResult ChangeResolution(int resolutionX, int resolutionY)
     {
-        return View();
+        TempData["InfoMessage"] = _remoteControl.ChangeResolution(resolutionX, resolutionY)?.MessageDescription;
+        return View("MainMenu", _television.Specifications);
     }
     
-    public IActionResult UpdateSoftware()
+    [HttpPost]
+    public IActionResult UpdateSoftware(string newVersion)
     {
-        return View();
+        TempData["InfoMessage"] = _remoteControl.UpdateSoftware(newVersion)?.MessageDescription;
+        return View("MainMenu", _television.Specifications);
     }
     
     public IActionResult TelevisionBroadcast()
