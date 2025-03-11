@@ -144,10 +144,23 @@ public class TelevisionController : Controller
     }
 
     [HttpPost]
-    public IActionResult Screencast(string newDeviceName, bool isConnected = false)
-    { 
-        if (isConnected) return View(new ExternalDeviceModel(_television.Specifications));
-        return View(new ExternalDeviceModel(newDeviceName, _television.Specifications));
+    public IActionResult Screencast(string? newDeviceName)
+    {
+        if (string.IsNullOrEmpty(newDeviceName) || newDeviceName == "none" || newDeviceName == "None")
+        {
+            TempData["InfoMessage"] = "Cannot connect to such device";
+            ExternalDeviceModel externalDevice = new ExternalDeviceModel(_television.Specifications);
+            return View(externalDevice);
+        }
+        ExternalDeviceModel externalDeviceModel = new ExternalDeviceModel(newDeviceName, _television.Specifications);
+        _remoteControl.ExternalDeviceScreencast(externalDeviceModel.Device);
+        return View(externalDeviceModel);
+    }
+
+    public IActionResult Disconnect()
+    {
+        ExternalDeviceModel externalDeviceModel = new ExternalDeviceModel(_television.Specifications);
+        return View("Screencast", externalDeviceModel);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
