@@ -1,4 +1,10 @@
-﻿var alertElement = document.getElementById('alert');
+﻿var saveButton = document.getElementById('buttonSave');
+
+saveButton.addEventListener('click', function(){
+  fetch('/Television/Save/', {method: 'POST'})
+})
+
+var alertElement = document.getElementById('alert');
 var closeButton = alertElement.querySelector('.btn-close');
 
 function showAlert() {

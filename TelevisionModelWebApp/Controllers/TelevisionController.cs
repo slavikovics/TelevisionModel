@@ -38,7 +38,6 @@ public class TelevisionController : Controller
     public IActionResult MainMenu()
     {
         _remoteControl.MainMenu();
-        
         return View(_television.Specifications);
     }
 
@@ -103,6 +102,12 @@ public class TelevisionController : Controller
         }
         
         return View(currentView, _television.Specifications);
+    }
+
+    [HttpPost]
+    public void Save()
+    {
+        Saver.SaveToFile(_television);
     }
     
     [HttpPost]

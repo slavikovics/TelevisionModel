@@ -35,9 +35,19 @@ public class Program
 
         app.UseAuthorization();
 
+        string action = "";
+        switch (television.State)
+        {
+            case States.TurnedOff: action = "TurnOff"; break;
+            case States.MainMenu: action = "MainMenu"; break;
+            case States.TelevisionBroadcasting: action = "TelevisionBroadcast"; break;
+            case States.Streaming: action = "Streaming"; break;
+            default: action = "Screencast"; break;
+        }
+
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Television}/{action=TurnOff}/{id?}");
+            pattern: "{controller=Television}/{action=" + action+ "}/{id?}");
 
         app.Run();
     }
