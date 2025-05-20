@@ -5,11 +5,16 @@
 }
 @if (TempData["InfoMessage"] != null)
 {
-<div id="alert" class="alert alert-info alert-dismissible alert-fade custom-alert position-fixed" style="top: -10px; right: 10px; z-index: 1050;" role="alert">
-    @TempData["InfoMessage"]
-    <button type="button" class="close btn btn-close" data-dismiss="alert" aria-label="Close">
-    </button>
-</div>
+    <div id="alert" class="alert alert-info alert-dismissible alert-fade custom-alert position-fixed" style="top: -10px; right: 10px; z-index: 1050;" role="alert">
+        @TempData["InfoMessage"]
+        <button type="button" class="close btn btn-close" data-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+}
+else
+{
+    <div id="alert" class="alert alert-info alert-dismissible alert-fade custom-alert position-fixed" style="top: -10px; right: 10px; z-index: 1050;" role="alert">
+    </div>
 }
 
 <div class="text-center">

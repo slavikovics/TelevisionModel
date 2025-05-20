@@ -35,8 +35,20 @@ public class Program
 
         app.UseAuthorization();
 
-        string action = "";
-        switch (television.State)
+        string action = ChooseAction(television.State);
+
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Television}/{action=" + action+ "}/{id?}");
+
+        app.Run();
+    }
+
+    private static string ChooseAction(States state)
+    {
+        string action;
+        
+        switch (state)
         {
             case States.TurnedOff: action = "TurnOff"; break;
             case States.MainMenu: action = "MainMenu"; break;
@@ -45,10 +57,6 @@ public class Program
             default: action = "Screencast"; break;
         }
 
-        app.MapControllerRoute(
-            name: "default",
-            pattern: "{controller=Television}/{action=" + action+ "}/{id?}");
-
-        app.Run();
+        return action;
     }
 }

@@ -105,9 +105,18 @@ public class TelevisionController : Controller
     }
 
     [HttpPost]
-    public void Save()
+    public string Save()
     {
-        Saver.SaveToFile(_television);
+        try
+        {
+            Saver.SaveToFile(_television);
+        }
+        catch (Exception e)
+        {
+            return "Failed to save state";
+        }
+        
+        return "State was successfully saved";
     }
     
     [HttpPost]
