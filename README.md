@@ -835,3 +835,129 @@ private string UpdateTechnicalSpecifications()
 
 ### 2. Диаграмма классов подсистем телевизора
 ![Диаграмма классов состояний](./Images/ClassDiagram.jpg)
+
+# Web-приложение
+
+![Диаграмма классов состояний](./Images/Streaming.png)
+
+## Для создания API-контроллера для телевизора был использован ASP.NET Core, в качестве CSS-фреймворка для упрощения стилизации использовался Bootstrap. В контроллере были реализованы следующие методы для обработки HTTP-запросов со стороны фронтенда:
+
+## 1. TurnOff
+- **HTTP Method**: GET
+- **Route**: /Television/TurnOff
+- **Description**: Выключает телевизор, если он не был выключен.
+- **Returns**: View `TurnOff.cshtml`
+- **Notes**:
+    - Вызывает `_remoteControl.PowerSwitch()` только если текущее состояние не `TurnedOff`
+
+## 2. TurnOn
+- **HTTP Method**: GET
+- **Route**: /Television/TurnOn
+- **Description**: Включает телевизор и перенаправляет в главное меню.
+- **Returns**: View `MainMenu.cshtml` с данными `_television.Specifications`
+- **Notes**:
+    - Устанавливает `TempData["PreviousAction"] = "MainMenu"`
+
+## 3. MainMenu
+- **HTTP Method**: GET
+- **Route**: /Television/MainMenu
+- **Description**: Отображает главное меню телевизора.
+- **Returns**: View `MainMenu.cshtml` с данными `_television.Specifications`
+
+## 4. Next
+- **HTTP Method**: GET
+- **Route**: /Television/Next
+- **Description**: Переключает на следующий канал/сериал.
+- **Returns**:
+    - `TelevisionBroadcast.cshtml` (состояние `TelevisionBroadcasting`) с моделью `BroadcastingModel`
+    - `Streaming.cshtml` (состояние `Streaming`) с моделью `StreamingModel`
+
+## 5. Previous
+- **HTTP Method**: GET
+- **Route**: /Television/Previous
+- **Description**: Переключает на предыдущий канал/эпизод.
+- **Returns**: Аналогично методу `Next`
+
+## 6. EditVolume
+- **HTTP Method**: POST
+- **Route**: /Television/EditVolume
+- **Parameters**:
+    - `newVolume` (string): Новый уровень громкости
+    - `currentView` (string): Текущее представление (`TelevisionBroadcast`, `Streaming`, `Screencast`)
+- **Description**: Изменяет громкость и возвращает текущий экран.
+- **Returns**:
+    - Представление из `currentView` с соответствующими моделями
+    - Сообщение об ошибке/успехе в `TempData["InfoMessage"]`
+
+## 7. Save
+- **HTTP Method**: POST
+- **Route**: /Television/Save
+- **Description**: Сохраняет текущее состояние телевизора.
+- **Returns**:
+    - `"State was successfully saved"` при успехе
+    - `"Failed to save state"` при ошибке
+
+## 8. ChangeResolution
+- **HTTP Method**: POST
+- **Route**: /Television/ChangeResolution
+- **Parameters**:
+    - `resolutionX` (int)
+    - `resolutionY` (int)
+- **Description**: Изменяет разрешение экрана.
+- **Returns**: `MainMenu.cshtml` с сообщением в `TempData["InfoMessage"]`
+
+## 9. UpdateSoftware
+- **HTTP Method**: POST
+- **Route**: /Television/UpdateSoftware
+- **Parameters**:
+    - `newVersion` (string)
+- **Description**: Обновляет ПО телевизора.
+- **Returns**: `MainMenu.cshtml` с сообщением в `TempData["InfoMessage"]`
+
+## 10. TelevisionBroadcast
+- **HTTP Method**: GET
+- **Route**: /Television/TelevisionBroadcast
+- **Description**: Переключает в режим телевизионного вещания.
+- **Returns**: View `TelevisionBroadcast.cshtml` с моделью `BroadcastingModel`
+
+## 11. Streaming
+- **HTTP Method**: GET
+- **Route**: /Television/Streaming
+- **Description**: Переключает в режим стриминга.
+- **Returns**: View `Streaming.cshtml` с моделью `StreamingModel`
+
+## 12. Screencast
+- **GET**:
+    - **Route**: /Television/Screencast
+    - **Description**: Отображает экран подключения внешнего устройства.
+    - **Returns**: View `Screencast.cshtml` с моделью `ExternalDeviceModel`
+
+- **POST**:
+    - **Parameters**:
+        - `newDeviceName` (string)
+    - **Description**: Подключает внешнее устройство для зеркалирования.
+    - **Returns**:
+        - При успехе: `Screencast.cshtml` с подключенным устройством
+        - При ошибке: Сообщение в `TempData["InfoMessage"]`
+
+## 13. Disconnect
+- **HTTP Method**: GET
+- **Route**: /Television/Disconnect
+- **Description**: Отключает внешнее устройство.
+- **Returns**: View `Screencast.cshtml` с пустой моделью
+
+## 14. Error
+- **HTTP Method**: GET
+- **Route**: /Television/Error
+- **Description**: Отображает страницу ошибки.
+- **Returns**: View `Error.cshtml` с моделью `ErrorViewModel`
+
+# Внешний вид меню пользовательского интерфейса:
+
+![image](./Images/MainMenu.png) Главное меню
+
+![image](./Images/Streaming.png) Просмотр доступных сериалов
+
+![image](./Images/Television.png) Просмотр доступных телеканалов
+
+![image](./Images/Screencast.png) Трансляция экрана на другие устройства
